@@ -1,0 +1,10 @@
+<snippet>
+  <content><![CDATA[
+{% if ${1:condition} %}
+  ${0:{# Code goes here... #}}
+{% endif %}
+]]></content>
+  <tabTrigger>if</tabTrigger>
+  <scope>text.html.njk,source.njk</scope>
+  <description>If statement</description>
+</snippet>
