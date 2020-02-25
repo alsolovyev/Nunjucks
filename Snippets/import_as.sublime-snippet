@@ -1,0 +1,8 @@
+<snippet>
+  <content><![CDATA[
+{% import '${1:path/to/template}' as ${2:variable} %}
+]]></content>
+  <tabTrigger>imas</tabTrigger>
+  <scope>text.html.njk,source.njk</scope>
+  <description>Import a template and bind all of its exported values to a variable</description>
+</snippet>

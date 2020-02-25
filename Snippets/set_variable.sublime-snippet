@@ -1,0 +1,8 @@
+<snippet>
+  <content><![CDATA[
+{% set ${1:variable} = '${2:value}' %}
+]]></content>
+  <tabTrigger>set</tabTrigger>
+  <scope>text.html.njk,source.njk</scope>
+  <description>Set variable</description>
+</snippet>
