@@ -1,0 +1,141 @@
+%YAML 1.2
+---
+name: Nunjucks
+file_extensions:
+  - html.nunjucks
+  - html.nunjs
+  - html.njk
+scope: text.html.njk
+
+variables:
+  keywords: extends|import|include|from|as|block|endblock|if|endif|for|endfor|in|asyncEach|endeach|asyncAll|endall|macro|endmacro|set|raw|verbatim|filter|endfilter|call|endcall
+  filters: abs|batch|capitalize|center|default|dictsort|dump|escape|first|float|forceescape|groupby|indent|int|join|last|length|list|lower|nl2br|random|rejectattr|replace|reverse|round|safe|selectattr|slice|sort|string|striptags|sum|title|trim|truncate|upper|urlencode|urlize|wordcount
+
+contexts:
+  main:
+    - match: ''
+      push: scope:text.html.basic
+      with_prototype:
+        #
+        # Comment Tag
+        #
+        - match: '{#-?'
+          captures:
+            0: punctuation.definition.comment.begin.nunjucks
+          push:
+            - meta_scope: comment.block.nunjucks
+            - match: '-?#}'
+              captures:
+                0: punctuation.definition.comment.end.nunjucks
+              pop: true
+
+        #
+        # Statement Tag
+        #
+        - match: '({%-?)|({{-?)'
+          captures:
+            0: punctuation.section.tag.nunjucks
+          push:
+            - meta_scope: meta.tag.template.block.nunjucks
+            - match: '(-?}})|(-?%})'
+              captures:
+                0: punctuation.section.tag.nunjucks
+              pop: true
+            - include: nunjucks-constants
+            - include: nunjucks-filters
+            - include: nunjucks-keywords
+            - include: nunjucks-macros
+            - include: nunjucks-objects
+            - include: nunjucks-operators
+            - include: nunjucks-strings
+
+  #
+  # Nunjucks includes
+  #
+  nunjucks-constants:
+    - match: '(?i)(?<=[\s\[\(\{:,])(?:true|false|null|none)(?=[\s\)\]\}\,])'
+      scope: constant.language.nunjucks
+    - match: '(?<=[\s\[\(\{:,]|\.\.|\*\*)[0-9]+(?:\.[0-9]+)?(?=[\s\)\]\}\,]|\.\.|\*\*)'
+      scope: constant.numeric.nunjucks
+
+  nunjucks-filters:
+    - match: '(?<=(?:[a-zA-Z0-9_\x{7f}-\x{ff}\]\)\''\"\s]\|)|\{%\sfilter\s)((\s?)({{filters}}))(?=[\s\|\]\}\):,]|\.\.|\*\*)'
+      captures:
+        1: support.class.nunjucks
+
+  nunjucks-keywords:
+    - match: (?<=\s)({{keywords}})(?=\s)
+      scope: keyword.control.nunjucks
+
+  nunjucks-macros:
+    - match: |-
+        (?x)
+          (?<=[\s\(\[\{:,])
+          ([a-zA-Z_\x{7f}-\x{ff}][a-zA-Z0-9_\x{7f}-\x{ff}]*)
+          (?:(\.)([a-zA-Z_\x{7f}-\x{ff}][a-zA-Z0-9_\x{7f}-\x{ff}]*))?
+          (\()
+      scope: meta.function-call.nunjucks
+      # captures:
+      #   1: meta.function-call.nunjucks # name
+      #   2: entity.name.class # punctuation.separator.property.nunjucks
+      #   3: entity.name.class # punctuation.separator.property.nunjucks
+      #   4: meta.function-call.nunjucks # (
+      push:
+        - meta_content_scope: meta.function.arguments.twig
+        - match: \)
+          scope: meta.function-call.nunjucks
+          pop: true
+        - include: nunjucks-parameters
+        - include: nunjucks-strings
+
+  nunjucks-objects:
+    - match: '(?<=[\s\{\[\(:,])([a-zA-Z_\x{7f}-\x{ff}][a-zA-Z0-9_\x{7f}-\x{ff}]*)(?=[\s\}\[\]\(\)\.\|,:])'
+      captures:
+        1: variable.other.nunjucks
+
+  nunjucks-operators:
+    - match: (?<=\s)(\+|-|//?|%|\*\*?)(?=\s)
+      captures:
+        1: keyword.operator.arithmetic.nunjucks
+    - match: (?<=\s)(=|~)(?=\s)
+      captures:
+        1: keyword.operator.assignment.nunjucks
+    - match: (?<=\s)(b-(?:and|or|xor))(?=\s)
+      captures:
+        1: keyword.operator.bitwise.nunjucks
+    - match: '(?<=\s)((?:!|=)=|<=?|>=?|(?:not )?in|is(?: not)?|(?:ends|starts) with|matches)(?=\s)'
+      captures:
+        1: keyword.operator.comparison.nunjucks
+    - match: (?<=\s)(\?|:|and|not|or)(?=\s)
+      captures:
+        1: keyword.operator.logical.nunjucks
+    - match: '(?<=[a-zA-Z0-9_\x{7f}-\x{ff}\]\)''"])\.\.(?=[a-zA-Z0-9_\x{7f}-\x{ff}''"])'
+      captures:
+        0: keyword.operator.other.nunjucks
+    - match: '(?<=[a-zA-Z0-9_\x{7f}-\x{ff}\]\}\)''"])\|(?=[a-zA-Z_\x{7f}-\x{ff}])'
+      captures:
+        0: keyword.operator.other.nunjucks
+
+  nunjucks-strings:
+    - match: (?:(?<!\\)|(?<=\\\\))'
+      captures:
+        0: punctuation.definition.string.begin.nunjucks
+      push:
+        - meta_scope: string.quoted.single.nunjucks
+        - match: (?:(?<!\\)|(?<=\\\\))'
+          captures:
+            0: punctuation.definition.string.end.nunjucks
+          pop: true
+    - match: (?:(?<!\\)|(?<=\\\\))"
+      captures:
+        0: punctuation.definition.string.begin.nunjucks
+      push:
+        - meta_scope: string.quoted.double.nunjucks
+        - match: (?:(?<!\\)|(?<=\\\\))"
+          captures:
+            0: punctuation.definition.string.end.nunjucks
+          pop: true
+
+  nunjucks-parameters:
+    - match: '(?<=\()\w+'
+      scope: variable.parameter.nunjucks

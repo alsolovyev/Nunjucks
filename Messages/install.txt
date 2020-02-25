@@ -1,0 +1,4 @@
+The Nunjucks package has been successfully installed.
+
+Please report issues here: https://github.com/alsolovyev/Nunjucks/issues
+Created by janeRivas <solovyev.a@icloud.com>
