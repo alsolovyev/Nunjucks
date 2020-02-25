@@ -1,0 +1,8 @@
+<snippet>
+  <content><![CDATA[
+{% include '${1:path/to/template}' %}
+]]></content>
+  <tabTrigger>inc</tabTrigger>
+  <scope>text.html.njk,source.njk</scope>
+  <description>Include template</description>
+</snippet>
