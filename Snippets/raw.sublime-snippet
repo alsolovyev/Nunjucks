@@ -1,0 +1,10 @@
+<snippet>
+  <content><![CDATA[
+{% raw %}
+  ${0:{# Code goes here... #}}
+{% endraw %}
+]]></content>
+  <tabTrigger>raw</tabTrigger>
+  <scope>text.html.njk,source.njk</scope>
+  <description>Output any of the special Nunjucks tags</description>
+</snippet>
