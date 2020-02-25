@@ -1,0 +1,10 @@
+<snippet>
+  <content><![CDATA[
+{% macro ${1:name}(${2:...args}) %}
+  ${0:{# Code goes here... #}}
+{% endmacro %}
+]]></content>
+  <tabTrigger>mc</tabTrigger>
+  <scope>text.html.njk,source.njk</scope>
+  <description>Create reusable chunks of content</description>
+</snippet>
