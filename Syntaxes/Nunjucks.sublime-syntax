@@ -137,5 +137,5 @@ contexts:
           pop: true
 
   nunjucks-parameters:
-    - match: '(?<=\()\w+'
+    - match: \w
       scope: variable.parameter.nunjucks
