@@ -1,0 +1,10 @@
+<snippet>
+  <content><![CDATA[
+{% set ${1:variable} %}
+  ${0:{# Code goes here... #\}}
+{% endset %}
+]]></content>
+  <tabTrigger>setb</tabTrigger>
+  <scope>text.html.njk,source.njk</scope>
+  <description>Set variable(block)</description>
+</snippet>
