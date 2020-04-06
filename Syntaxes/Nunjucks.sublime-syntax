@@ -2,9 +2,8 @@
 ---
 name: Nunjucks
 file_extensions:
-  - html.nunjucks
-  - html.nunjs
-  - html.njk
+  - njk
+  - nunjucks
 scope: text.html.njk
 
 variables:
