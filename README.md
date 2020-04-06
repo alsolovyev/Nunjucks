@@ -17,7 +17,7 @@ Thank you for downloading this package, and I hope you'll enjoy it.
 
 **Snippets**
 - [`bl`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/block.sublime-snippet) - Define a section in a template
-- [`{`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/braces.sublime-snippet) - Double curly braces for variable
+- [`{`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/braces.sublime-snippet) - Double curly braces for a variable
 - [`%`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/braces.sublime-snippet) - Braces for code
 - [`cl`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/call.sublime-snippet) -  Call a macro with all the text inside the tag
 - [`#`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/comment.sublime-snippet) - Braces for comments
