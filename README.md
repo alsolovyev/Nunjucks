@@ -29,7 +29,7 @@ Thank you for downloading this package, and I hope you'll enjoy it.
 - [`im`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/import.sublime-snippet) - Import a template
 - [`imas`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/import_as.sublime-snippet) - Import a template and bind to a variable
 - [`fr`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/import_from.sublime-snippet) - Import specific values from a template
-- [`fras`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/import_from_as.sublime-snippet) - Import specific values from a template and bind to a bariable
+- [`fras`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/import_from_as.sublime-snippet) - Import specific values from a template and bind to a variable
 - [`inc`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/include.sublime-snippet) - Include a template
 - [`mc`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/macro.sublime-snippet) - Define reusable chunks of content(macro)
 - [`raw`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/raw.sublime-snippet) - Output the code inside the tag as plain text
