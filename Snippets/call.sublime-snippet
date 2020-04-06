@@ -1,7 +1,7 @@
 <snippet>
   <content><![CDATA[
 {% call ${1:macro} %}
-  ${0:{# Code goes here... #}}
+  ${0:{# Code goes here... #\}}
 {% endcall %}
 ]]></content>
   <tabTrigger>cl</tabTrigger>

@@ -1,7 +1,7 @@
 <snippet>
 	<content><![CDATA[
 {% filter ${1:filter} %}
-	${0:{# Code goes here... #}}
+	${0:{# Code goes here... #\}}
 {% endfilter %}
 ]]></content>
 	<tabTrigger>fl</tabTrigger>

@@ -1,10 +1,10 @@
 <snippet>
   <content><![CDATA[
 {% block ${1:name} %}
-  ${0:{# Code goes here... #}}
+  ${0:{# Code goes here... #\}}
 {% endblock %}
 ]]></content>
   <tabTrigger>bl</tabTrigger>
   <scope>text.html.njk,source.njk</scope>
-  <description>Define a section on the template and identifie it with a name</description>
+  <description>Define a section on a template</description>
 </snippet>
