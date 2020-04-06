@@ -16,24 +16,24 @@ Thank you for downloading this package, and I hope you'll enjoy it.
 - [Nunjucks PHP](https://github.com/alsolovyev/Nunjucks/blob/master/Syntaxes/Nunjucks%20PHP.sublime-syntax) - with PHP syntax support
 
 **Snippets**
-- [block](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/block.sublime-snippet) `bl`
-- [braces](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/braces.sublime-snippet) `{`
-- [braces](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/braces.sublime-snippet) `%`
-- [call](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/call.sublime-snippet) `cl`
-- [comment](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/comment.sublime-snippet) `#`
-- [extends](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/extends.sublime-snippet) `ext`
-- [filter](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/filter.sublime-snippet) `fl`
-- [for](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/for.sublime-snippet) `for`
-- [if](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/if.sublime-snippet) `if`
-- [if else](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/if_else.sublime-snippet) `ife`
-- [import](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/import.sublime-snippet) `im`
-- [import as](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/import_as.sublime-snippet) `imas`
-- [import from](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/import_from.sublime-snippet) `fr`
-- [import from as](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/import_from_as.sublime-snippet) `fras`
-- [include](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/include.sublime-snippet) `inc`
-- [macro](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/macro.sublime-snippet) `mc`
-- [raw](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/raw.sublime-snippet) `raw`
-- [set](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/set_variable.sublime-snippet) `set`
+- [`bl`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/block.sublime-snippet) - Define a section in a template
+- [`{`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/braces.sublime-snippet) - Double curly braces for variable
+- [`%`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/braces.sublime-snippet) - Braces for code
+- [`cl`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/call.sublime-snippet) -  Call a macro with all the text inside the tag
+- [`#`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/comment.sublime-snippet) - Braces for comments
+- [`ext`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/extends.sublime-snippet) -  "Extends" another template
+- [`fl`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/filter.sublime-snippet) - Custom filters template
+- [`for`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/for.sublime-snippet) - For loop
+- [`if`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/if.sublime-snippet) - If statement
+- [`ife`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/if_else.sublime-snippet) - If...Else statement
+- [`im`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/import.sublime-snippet) - Import a template
+- [`imas`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/import_as.sublime-snippet) - Import a template and bind to a variable
+- [`fr`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/import_from.sublime-snippet) - Import specific values from a template
+- [`fras`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/import_from_as.sublime-snippet) - Import specific values from a template and bind to a bariable
+- [`inc`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/include.sublime-snippet) - Include a template
+- [`mc`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/macro.sublime-snippet) - Define reusable chunks of content(macro)
+- [`raw`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/raw.sublime-snippet) - Output the code inside the tag as plain text
+- [`set`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/set_variable.sublime-snippet) - Create/modify a variable
 
 
 ## Installation
