@@ -1,0 +1,10 @@
+<snippet>
+  <content><![CDATA[
+{# BEGIN ${1:name} #}
+${0}
+{# END ${1:name} #}
+]]></content>
+  <tabTrigger>cb</tabTrigger>
+  <scope>source.njk,text.html.njk</scope>
+  <description>Comment block</description>
+</snippet>
