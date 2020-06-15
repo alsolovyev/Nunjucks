@@ -9,6 +9,7 @@ scope: text.html.njk
 variables:
   keywords: extends|import|include|from|as|block|endblock|if|else|endif|for|endfor|in|asyncEach|endeach|asyncAll|endall|macro|endmacro|set|endset|raw|endraw|verbatim|filter|endfilter|call|endcall
   filters: abs|batch|capitalize|center|default|dictsort|dump|escape|first|float|forceescape|groupby|indent|int|join|last|length|list|lower|nl2br|random|rejectattr|replace|reverse|round|safe|selectattr|slice|sort|string|striptags|sum|title|trim|truncate|upper|urlencode|urlize|wordcount
+  validName: ([A-Za-z_]+[A-Za-z_0-9]*)
 
 contexts:
   main:
@@ -44,6 +45,7 @@ contexts:
             - include: nunjucks-filters
             - include: nunjucks-keywords
             - include: nunjucks-macros
+            - include: nunjucks-functions
             - include: nunjucks-objects
             - include: nunjucks-operators
             - include: nunjucks-strings
@@ -67,18 +69,8 @@ contexts:
       scope: keyword.control.nunjucks
 
   nunjucks-macros:
-    - match: |-
-        (?x)
-          (?<=[\s\(\[\{:,])
-          ([a-zA-Z_\x{7f}-\x{ff}][a-zA-Z0-9_\x{7f}-\x{ff}]*)
-          (?:(\.)([a-zA-Z_\x{7f}-\x{ff}][a-zA-Z0-9_\x{7f}-\x{ff}]*))?
-          (\()
+    - match: '(?<=macro\s){{validName}}(\()'
       scope: meta.function-call.nunjucks
-      # captures:
-      #   1: meta.function-call.nunjucks # name
-      #   2: entity.name.class # punctuation.separator.property.nunjucks
-      #   3: entity.name.class # punctuation.separator.property.nunjucks
-      #   4: meta.function-call.nunjucks # (
       push:
         - meta_content_scope: meta.function.arguments.twig
         - match: \)
@@ -87,10 +79,23 @@ contexts:
         - include: nunjucks-parameters
         - include: nunjucks-strings
 
+  nunjucks-functions:
+    - match: '(?<={|\s){{validName}}(\()'
+      scope: meta.function-call.nunjucks
+      push:
+        - meta_content_scope: meta.function.arguments.twig
+        - match: \)
+          scope: meta.function-call.nunjucks
+          pop: true
+        - include: nunjucks-arguments
+        - include: nunjucks-strings
+
   nunjucks-objects:
-    - match: '(?<=[\s\{\[\(:,])([a-zA-Z_\x{7f}-\x{ff}][a-zA-Z0-9_\x{7f}-\x{ff}]*)(?=[\s\}\[\]\(\)\.\|,:])'
-      captures:
-        1: variable.other.nunjucks
+    - match: '(?<=[\s\(\{,]){{validName}}(?=(\b))'
+      scope: variable.other.nunjucks
+    - match: '(?<=.){{validName}}(?=(\b))'
+      scope: variable.function.nunjucks # ToDo: Add a right scope for this
+
 
   nunjucks-operators:
     - match: (?<=\s)(\+|-|//?|%|\*\*?)(?=\s)
@@ -138,3 +143,6 @@ contexts:
   nunjucks-parameters:
     - match: \w
       scope: variable.parameter.nunjucks
+
+  nunjucks-arguments:
+    - include: nunjucks-objects
