@@ -54,7 +54,7 @@ Thank you for downloading this package, and I hope you'll enjoy it.
 _* to update the package `Package Control: Upgrade Package` select `Nunjucks`_
 
 **Manually download sublime-package file:**
-  - download sublime-package file: [Nunjucks.sublime-package](https://github.com/alsolovyev/Nunjucks/releases/download/v1.2/Nunjucks.sublime-package)
+  - download sublime-package file: [Nunjucks.sublime-package](https://github.com/alsolovyev/Nunjucks/releases/download/v1.2.1/Nunjucks.sublime-package)
   - move it into your Sublime Text **Installed Packages** directory
     - Windows: `%APPDATA%\Sublime Text 3\Installed Packages`
     - OS X: `~/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages`
