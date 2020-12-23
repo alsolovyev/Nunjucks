@@ -6,12 +6,9 @@ file_extensions:
   - nunjucks
 scope: text.html.njk
 
-
 variables:
   keywords: extends|import|include|from|as|block|endblock|if|elif|else|endif|for|endfor|in|asyncEach|endeach|asyncAll|endall|macro|endmacro|set|endset|raw|endraw|verbatim|filter|endfilter|call|endcall
-  filters: abs|batch|capitalize|center|default|dictsort|dump|escape|first|float|forceescape|groupby|indent|int|join|last|length|list|lower|nl2br|random|rejectattr|replace|reverse|round|safe|selectattr|slice|sort|string|striptags|sum|title|trim|truncate|upper|urlencode|urlize|wordcount
   validName: ([A-Za-z_]+[A-Za-z_0-9]*)
-
 
 contexts:
   main:
@@ -62,9 +59,8 @@ contexts:
       scope: constant.numeric.nunjucks
 
   nunjucks-filters:
-    - match: '(?<=(?:[a-zA-Z0-9_\x{7f}-\x{ff}\]\)\''\"\s]\|)|\{%\sfilter\s)((\s?)({{filters}}))(?=[\s\|\]\}\):,]|\.\.|\*\*)'
-      captures:
-        1: support.class.nunjucks
+    - match: '(?<=\|)(\s+)?{{validName}}'
+      scope: support.class.nunjucks
 
   nunjucks-keywords:
     - match: (?<=\s)({{keywords}})(?=\s)
@@ -74,7 +70,7 @@ contexts:
     - match: '(?<=macro\s){{validName}}(\()'
       scope: meta.function-call.nunjucks
       push:
-        - meta_content_scope: meta.function.arguments.twig
+        - meta_content_scope: meta.function.arguments
         - match: \)
           scope: meta.function-call.nunjucks
           pop: true
@@ -85,7 +81,7 @@ contexts:
     - match: '(?<={|\s){{validName}}(\()'
       scope: meta.function-call.nunjucks
       push:
-        - meta_content_scope: meta.function.arguments.twig
+        - meta_content_scope: meta.function.arguments
         - match: \)
           scope: meta.function-call.nunjucks
           pop: true
@@ -97,7 +93,6 @@ contexts:
       scope: variable.other.nunjucks
     - match: '(?<=.){{validName}}(?=(\b))'
       scope: variable.function.nunjucks # ToDo: Add a right scope for this
-
 
   nunjucks-operators:
     - match: (?<=\s)(\+|-|//?|%|\*\*?)(?=\s)
