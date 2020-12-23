@@ -72,7 +72,7 @@ contexts:
     - match: '(?<=macro\s){{validName}}(\()'
       scope: meta.function-call.nunjucks
       push:
-        - meta_content_scope: meta.function.arguments.twig
+        - meta_content_scope: meta.function.arguments
         - match: \)
           scope: meta.function-call.nunjucks
           pop: true
@@ -83,7 +83,7 @@ contexts:
     - match: '(?<={|\s){{validName}}(\()'
       scope: meta.function-call.nunjucks
       push:
-        - meta_content_scope: meta.function.arguments.twig
+        - meta_content_scope: meta.function.arguments
         - match: \)
           scope: meta.function-call.nunjucks
           pop: true
