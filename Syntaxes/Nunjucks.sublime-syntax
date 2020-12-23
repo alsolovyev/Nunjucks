@@ -45,8 +45,8 @@ contexts:
             - include: nunjucks-keywords
             - include: nunjucks-macros
             - include: nunjucks-functions
-            - include: nunjucks-objects
             - include: nunjucks-operators
+            - include: nunjucks-objects
             - include: nunjucks-strings
 
   #
