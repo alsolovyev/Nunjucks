@@ -42,7 +42,7 @@ Thank you for downloading this package, and I hope you'll enjoy it.
 
 ## Installation
 
-**Via package control(recommended):**
+**Via package control (recommended):**
 
 - open command palette
 - select `Package Control: Install Packages`
