@@ -6,7 +6,7 @@ This package was created based on my personal experience with the Nunjucks templ
 
 Thank you for downloading this package, and I hope you'll enjoy it.
 
-[![Nunjucks syntax](https://habrastorage.org/webt/tc/ri/fs/tcrifss5klkuhoy7scyvnpj7kvq.jpeg)](https://github.com/alsolovyev/Nunjucks)
+![Nunjucks syntax](https://habrastorage.org/webt/tc/ri/fs/tcrifss5klkuhoy7scyvnpj7kvq.jpeg)]
 
 
 ## Features
