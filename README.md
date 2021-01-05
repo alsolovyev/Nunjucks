@@ -12,10 +12,12 @@ Thank you for downloading this package, and I hope you'll enjoy it.
 ## Features
 
 **Syntaxes**
+
 - [Nunjucks](https://github.com/alsolovyev/Nunjucks/blob/master/Syntaxes/Nunjucks.sublime-syntax) - HTML basic
 - [Nunjucks PHP](https://github.com/alsolovyev/Nunjucks/blob/master/Syntaxes/Nunjucks%20PHP.sublime-syntax) - with PHP syntax support
 
 **Snippets**
+
 - [`bl`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/block.sublime-snippet) - Define a section in a template
 - [`{`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/braces.sublime-snippet) - Double curly braces for a variable
 - [`%`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/braces.sublime-snippet) - Braces for code
@@ -40,32 +42,38 @@ Thank you for downloading this package, and I hope you'll enjoy it.
 
 ## Installation
 
-**~~Via package control:~~**
-  - ~~currently not available~~
+**Via package control(recommended):**
 
-**Via GitHub repository(recommended):**
-  - open command palette
-  - select `Package Control: Add Repository`
-  - paste `https://github.com/alsolovyev/Nunjucks` into the field that opens and press enter
-  - open command palette
-  - select `Package Control: Install Packages`
-  - search for `Nunjucks`
+- open command palette
+- select `Package Control: Install Packages`
+- search for `Nunjucks`
+
+**Via GitHub repository:**
+
+- open command palette
+- select `Package Control: Add Repository`
+- paste `https://github.com/alsolovyev/Nunjucks` into the field that opens and press enter
+- open command palette
+- select `Package Control: Install Packages`
+- search for `Nunjucks`
 
 _* to update the package `Package Control: Upgrade Package` select `Nunjucks`_
 
 **Manually download sublime-package file:**
-  - download sublime-package file: [Nunjucks.sublime-package](https://github.com/alsolovyev/Nunjucks/releases/download/v1.2.2/Nunjucks.sublime-package)
-  - move it into your Sublime Text **Installed Packages** directory
-    - Windows: `%APPDATA%\Sublime Text 3\Installed Packages`
-    - OS X: `~/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages`
-    - Linux: `~/.config/sublime-text-3/Installed Packages`
+
+- download sublime-package file: [Nunjucks.sublime-package](https://github.com/alsolovyev/Nunjucks/releases/download/v1.2.2/Nunjucks.sublime-package)
+- move it into your Sublime Text **Installed Packages** directory
+  - Windows: `%APPDATA%\Sublime Text 3\Installed Packages`
+  - OS X: `~/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages`
+  - Linux: `~/.config/sublime-text-3/Installed Packages`
 
 **Manually download repository:**
-  - clone [repository](https://github.com/alsolovyev/Nunjucks/archive/master.zip)
-  - extract it into your Sublime Text **Packages** directory
-    - Windows: `%APPDATA%\Sublime Text 3\Packages`
-    - OS X: `~/Library/Application\ Support/Sublime\ Text\ 3/Packages`
-    - Linux: `~/.config/sublime-text-3/Packages`
+
+- clone [repository](https://github.com/alsolovyev/Nunjucks/archive/master.zip)
+- extract it into your Sublime Text **Packages** directory
+  - Windows: `%APPDATA%\Sublime Text 3\Packages`
+  - OS X: `~/Library/Application\ Support/Sublime\ Text\ 3/Packages`
+  - Linux: `~/.config/sublime-text-3/Packages`
 
 
 ## License
