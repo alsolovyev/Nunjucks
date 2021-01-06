@@ -142,4 +142,5 @@ contexts:
       scope: variable.parameter.nunjucks
 
   nunjucks-arguments:
+    - include: nunjucks-constants
     - include: nunjucks-objects
