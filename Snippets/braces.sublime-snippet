@@ -4,5 +4,5 @@
 ]]></content>
   <tabTrigger>{</tabTrigger>
   <scope>source.njk,text.html.njk</scope>
-  <description>Braces</description>
+  <description>Curly braces for variables</description>
 </snippet>
