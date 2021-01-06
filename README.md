@@ -18,21 +18,21 @@ Thank you for downloading this package, and I hope you'll enjoy it.
 
 **Snippets**
 
-- [`bl`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/block.sublime-snippet) - Define a section in a template
 - [`{`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/braces.sublime-snippet) - Double curly braces for a variable
 - [`%`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/braces.sublime-snippet) - Braces for code
+- [`bl`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/block.sublime-snippet) - Define a section in a template
+- [`cb`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/comment_block.sublime-snippet) - BEGIN-END comment block
 - [`cl`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/call.sublime-snippet) -  Call a macro with all the text inside the tag
 - [`co`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/comment.sublime-snippet) - Braces for comments
-- [`cb`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/comment_block.sublime-snippet) - BEGIN-END comment block
 - [`ext`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/extends.sublime-snippet) -  "Extends" another template
 - [`fl`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/filter.sublime-snippet) - Custom filters template
 - [`for`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/for.sublime-snippet) - For loop
+- [`fr`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/import_from.sublime-snippet) - Import specific values from a template
+- [`fras`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/import_from_as.sublime-snippet) - Import specific values from a template and bind to a variable
 - [`if`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/if.sublime-snippet) - If statement
 - [`ife`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/if_else.sublime-snippet) - If...Else statement
 - [`im`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/import.sublime-snippet) - Import a template
 - [`imas`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/import_as.sublime-snippet) - Import a template and bind to a variable
-- [`fr`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/import_from.sublime-snippet) - Import specific values from a template
-- [`fras`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/import_from_as.sublime-snippet) - Import specific values from a template and bind to a variable
 - [`inc`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/include.sublime-snippet) - Include a template
 - [`mc`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/macro.sublime-snippet) - Define reusable chunks of content(macro)
 - [`raw`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/raw.sublime-snippet) - Output the code inside the tag as plain text
