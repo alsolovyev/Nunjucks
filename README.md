@@ -18,21 +18,21 @@ Thank you for downloading this package, and I hope you'll enjoy it.
 
 **Snippets**
 
+- [`{`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/braces.sublime-snippet) - Curly braces for variables
+- [`%`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/tag.sublime-snippet) - Braces for code
 - [`bl`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/block.sublime-snippet) - Define a section in a template
-- [`{`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/braces.sublime-snippet) - Double curly braces for a variable
-- [`%`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/braces.sublime-snippet) - Braces for code
+- [`cb`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/comment_block.sublime-snippet) - BEGIN-END comment block
 - [`cl`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/call.sublime-snippet) -  Call a macro with all the text inside the tag
 - [`co`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/comment.sublime-snippet) - Braces for comments
-- [`cb`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/comment_block.sublime-snippet) - BEGIN-END comment block
 - [`ext`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/extends.sublime-snippet) -  "Extends" another template
 - [`fl`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/filter.sublime-snippet) - Custom filters template
 - [`for`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/for.sublime-snippet) - For loop
+- [`fr`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/import_from.sublime-snippet) - Import specific values from a template
+- [`fras`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/import_from_as.sublime-snippet) - Import specific values from a template and bind to a variable
 - [`if`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/if.sublime-snippet) - If statement
 - [`ife`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/if_else.sublime-snippet) - If...Else statement
 - [`im`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/import.sublime-snippet) - Import a template
 - [`imas`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/import_as.sublime-snippet) - Import a template and bind to a variable
-- [`fr`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/import_from.sublime-snippet) - Import specific values from a template
-- [`fras`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/import_from_as.sublime-snippet) - Import specific values from a template and bind to a variable
 - [`inc`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/include.sublime-snippet) - Include a template
 - [`mc`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/macro.sublime-snippet) - Define reusable chunks of content(macro)
 - [`raw`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/raw.sublime-snippet) - Output the code inside the tag as plain text
@@ -61,7 +61,7 @@ _* to update the package `Package Control: Upgrade Package` select `Nunjucks`_
 
 **Manually download sublime-package file:**
 
-- download sublime-package file: [Nunjucks.sublime-package](https://github.com/alsolovyev/Nunjucks/releases/download/v1.2.2/Nunjucks.sublime-package)
+- download sublime-package file: [Nunjucks.sublime-package](https://github.com/alsolovyev/Nunjucks/releases/download/v1.2.3/Nunjucks.sublime-package)
 - move it into your Sublime Text **Installed Packages** directory
   - Windows: `%APPDATA%\Sublime Text 3\Installed Packages`
   - OS X: `~/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages`
