@@ -34,12 +34,12 @@ contexts:
         #
         - match: '{#-?'
           captures:
-            0: punctuation.definition.comment.begin.nunjucks
+            0: punctuation.definition.comment.begin.njk
           push:
-            - meta_scope: comment.block.nunjucks
+            - meta_scope: comment.block.njk
             - match: '-?#}'
               captures:
-                0: punctuation.definition.comment.end.nunjucks
+                0: punctuation.definition.comment.end.njk
               pop: true
 
         #
@@ -47,12 +47,12 @@ contexts:
         #
         - match: '({%-?)|({{-?)'
           captures:
-            0: punctuation.section.tag.nunjucks
+            0: punctuation.section.tag.njk
           push:
-            - meta_scope: meta.tag.template.block.nunjucks
+            - meta_scope: meta.tag.template.block.njk
             - match: '(-?}})|(-?%})'
               captures:
-                0: punctuation.section.tag.nunjucks
+                0: punctuation.section.tag.njk
               pop: true
             - include: nunjucks-constants
             - include: nunjucks-filters
@@ -68,92 +68,92 @@ contexts:
   #
   nunjucks-constants:
     - match: '\b({{reserved}})\b'
-      scope: constant.language.nunjucks
+      scope: constant.language.njk
     - match: '(?:\B[-+])?(\b[0-9]+(\.[0-9]*)?)'
-      scope: constant.numeric.nunjucks
+      scope: constant.numeric.njk
 
   nunjucks-filters:
     - match: '(?<=\|)(\s+)?{{valid_name}}'
-      scope: support.class.nunjucks
+      scope: support.class.njk
 
   nunjucks-keywords:
     - match: '\b{{keywords}}\b'
-      scope: keyword.control.nunjucks
+      scope: keyword.control.njk
 
   nunjucks-macros:
     - match: '(?<=macro\s){{valid_name}}(\()'
-      scope: meta.function-call.nunjucks
+      scope: meta.function-call.njk
       push:
-        - meta_content_scope: meta.function.arguments
+        - meta_content_scope: meta.function.arguments.njk
         - match: \)
-          scope: meta.function-call.nunjucks
+          scope: meta.function-call.njk
           pop: true
         - include: nunjucks-parameters
         - include: nunjucks-strings
 
   nunjucks-functions:
     - match: '(?<={|\s){{valid_name}}(\()'
-      scope: meta.function-call.nunjucks
+      scope: meta.function-call.njk
       push:
-        - meta_content_scope: meta.function.arguments
+        - meta_content_scope: meta.function.arguments.njk
         - match: \)
-          scope: meta.function-call.nunjucks
+          scope: meta.function-call.njk
           pop: true
         - include: nunjucks-arguments
         - include: nunjucks-strings
 
   nunjucks-objects:
     - match: '(?<=[\s\(\{,]){{valid_name}}(?=(\b))'
-      scope: variable.other.nunjucks
+      scope: variable.other.njk
     - match: '(?<=.){{valid_name}}(?=(\b))'
-      scope: variable.function.nunjucks # ToDo: Add a right scope for this
+      scope: variable.function.njk # ToDo: Add a right scope for this
 
   nunjucks-operators:
     - match: (?<=\s)(\+|-|//?|%|\*\*?)(?=\s)
       captures:
-        1: keyword.operator.arithmetic.nunjucks
+        1: keyword.operator.arithmetic.njk
     - match: (?<=\s)(=|~)(?=\s)
       captures:
-        1: keyword.operator.assignment.nunjucks
+        1: keyword.operator.assignment.njk
     - match: (?<=\s)(b-(?:and|or|xor))(?=\s)
       captures:
-        1: keyword.operator.bitwise.nunjucks
+        1: keyword.operator.bitwise.njk
     - match: '(?<=\s)((?:!|=)=|<=?|>=?|(?:not )?in|is(?: not)?|(?:ends|starts) with|matches)(?=\s)'
       captures:
-        1: keyword.operator.comparison.nunjucks
+        1: keyword.operator.comparison.njk
     - match: (?<=\s)(\?|:|and|not|or)(?=\s)
       captures:
-        1: keyword.operator.logical.nunjucks
+        1: keyword.operator.logical.njk
     - match: '(?<=[a-zA-Z0-9_\x{7f}-\x{ff}\]\)''"])\.\.(?=[a-zA-Z0-9_\x{7f}-\x{ff}''"])'
       captures:
-        0: keyword.operator.other.nunjucks
+        0: keyword.operator.other.njk
     - match: '(?<=[a-zA-Z0-9_\x{7f}-\x{ff}\]\}\)''"])\|(?=[a-zA-Z_\x{7f}-\x{ff}])'
       captures:
-        0: keyword.operator.other.nunjucks
+        0: keyword.operator.other.njk
 
   nunjucks-strings:
     - match: (?:(?<!\\)|(?<=\\\\))'
       captures:
-        0: punctuation.definition.string.begin.nunjucks
+        0: punctuation.definition.string.begin.njk
       push:
-        - meta_scope: string.quoted.single.nunjucks
+        - meta_scope: string.quoted.single.njk
         - match: (?:(?<!\\)|(?<=\\\\))'
           captures:
-            0: punctuation.definition.string.end.nunjucks
+            0: punctuation.definition.string.end.njk
           pop: true
     - match: (?:(?<!\\)|(?<=\\\\))"
       captures:
-        0: punctuation.definition.string.begin.nunjucks
+        0: punctuation.definition.string.begin.njk
       push:
-        - meta_scope: string.quoted.double.nunjucks
+        - meta_scope: string.quoted.double.njk
         - match: (?:(?<!\\)|(?<=\\\\))"
           captures:
-            0: punctuation.definition.string.end.nunjucks
+            0: punctuation.definition.string.end.njk
           pop: true
 
   nunjucks-parameters:
     - match: \w
-      scope: variable.parameter.nunjucks
+      scope: variable.parameter.njk
 
   nunjucks-arguments:
     - include: nunjucks-constants
