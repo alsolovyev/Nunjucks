@@ -64,7 +64,7 @@ contexts:
       scope: support.class.nunjucks
 
   nunjucks-keywords:
-    - match: (?<=\s)({{keywords}})(?=\s)
+    - match: '\b{{keywords}}\b'
       scope: keyword.control.nunjucks
 
   nunjucks-macros:
