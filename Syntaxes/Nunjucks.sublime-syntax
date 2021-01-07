@@ -7,7 +7,20 @@ file_extensions:
 scope: text.html.njk
 
 variables:
-  keywords: extends|import|include|from|as|block|endblock|if|elif|else|endif|for|endfor|in|asyncEach|endeach|asyncAll|endall|macro|endmacro|set|endset|raw|endraw|verbatim|filter|endfilter|call|endcall
+  keywords: |-
+    (?x:
+      extends|import|include|from|as|
+      block|endblock|
+      if|elif|else|endif|
+      for|in|endfor|
+      asyncEach|endeach|asyncAll|endall|
+      macro|endmacro|
+      set|endset|
+      raw|endraw|
+      verbatim|
+      filter|endfilter|
+      call|endcall
+    )
   reserved: true|false|null
   validName: ([A-Za-z_]+[A-Za-z_0-9]*)
 
