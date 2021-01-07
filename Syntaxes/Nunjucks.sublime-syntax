@@ -7,8 +7,22 @@ file_extensions:
 scope: text.html.njk
 
 variables:
-  keywords: extends|import|include|from|as|block|endblock|if|elif|else|endif|for|endfor|in|asyncEach|endeach|asyncAll|endall|macro|endmacro|set|endset|raw|endraw|verbatim|filter|endfilter|call|endcall
-  validName: ([A-Za-z_]+[A-Za-z_0-9]*)
+  keywords: |-
+    (?x:
+      extends|import|include|from|as|
+      block|endblock|
+      if|elif|else|endif|
+      for|in|endfor|
+      asyncEach|endeach|asyncAll|endall|
+      macro|endmacro|
+      set|endset|
+      raw|endraw|
+      verbatim|
+      filter|endfilter|
+      call|endcall
+    )
+  reserved: true|false|null
+  valid_name: ([A-Za-z_]+[A-Za-z_0-9]*)
 
 contexts:
   main:
@@ -53,21 +67,21 @@ contexts:
   # Nunjucks includes
   #
   nunjucks-constants:
-    - match: '(?i)(?<=[\s\[\(\{:,])(?:true|false|null|none)(?=[\s\)\]\}\,])'
+    - match: '\b({{reserved}})\b'
       scope: constant.language.nunjucks
-    - match: '(?<=[\s\[\(\{:,]|\.\.|\*\*)[0-9]+(?:\.[0-9]+)?(?=[\s\)\]\}\,]|\.\.|\*\*)'
+    - match: '([+-]?[0-9])+(\.)?'
       scope: constant.numeric.nunjucks
 
   nunjucks-filters:
-    - match: '(?<=\|)(\s+)?{{validName}}'
+    - match: '(?<=\|)(\s+)?{{valid_name}}'
       scope: support.class.nunjucks
 
   nunjucks-keywords:
-    - match: (?<=\s)({{keywords}})(?=\s)
+    - match: '\b{{keywords}}\b'
       scope: keyword.control.nunjucks
 
   nunjucks-macros:
-    - match: '(?<=macro\s){{validName}}(\()'
+    - match: '(?<=macro\s){{valid_name}}(\()'
       scope: meta.function-call.nunjucks
       push:
         - meta_content_scope: meta.function.arguments
@@ -78,7 +92,7 @@ contexts:
         - include: nunjucks-strings
 
   nunjucks-functions:
-    - match: '(?<={|\s){{validName}}(\()'
+    - match: '(?<={|\s){{valid_name}}(\()'
       scope: meta.function-call.nunjucks
       push:
         - meta_content_scope: meta.function.arguments
@@ -89,9 +103,9 @@ contexts:
         - include: nunjucks-strings
 
   nunjucks-objects:
-    - match: '(?<=[\s\(\{,]){{validName}}(?=(\b))'
+    - match: '(?<=[\s\(\{,]){{valid_name}}(?=(\b))'
       scope: variable.other.nunjucks
-    - match: '(?<=.){{validName}}(?=(\b))'
+    - match: '(?<=.){{valid_name}}(?=(\b))'
       scope: variable.function.nunjucks # ToDo: Add a right scope for this
 
   nunjucks-operators:
