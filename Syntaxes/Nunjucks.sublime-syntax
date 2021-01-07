@@ -8,6 +8,7 @@ scope: text.html.njk
 
 variables:
   keywords: extends|import|include|from|as|block|endblock|if|elif|else|endif|for|endfor|in|asyncEach|endeach|asyncAll|endall|macro|endmacro|set|endset|raw|endraw|verbatim|filter|endfilter|call|endcall
+  reserved: true|false|null
   validName: ([A-Za-z_]+[A-Za-z_0-9]*)
 
 contexts:
@@ -53,7 +54,7 @@ contexts:
   # Nunjucks includes
   #
   nunjucks-constants:
-    - match: '(?i)(?<=[\s\[\(\{:,])(?:true|false|null|none)(?=[\s\)\]\}\,])'
+    - match: '\b({{reserved}})\b'
       scope: constant.language.nunjucks
     - match: '(?<=[\s\[\(\{:,]|\.\.|\*\*)[0-9]+(?:\.[0-9]+)?(?=[\s\)\]\}\,]|\.\.|\*\*)'
       scope: constant.numeric.nunjucks
