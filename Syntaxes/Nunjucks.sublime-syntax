@@ -22,7 +22,7 @@ variables:
       call|endcall
     )
   reserved: true|false|null
-  validName: ([A-Za-z_]+[A-Za-z_0-9]*)
+  valid_name: ([A-Za-z_]+[A-Za-z_0-9]*)
 
 contexts:
   main:
@@ -73,7 +73,7 @@ contexts:
       scope: constant.numeric.nunjucks
 
   nunjucks-filters:
-    - match: '(?<=\|)(\s+)?{{validName}}'
+    - match: '(?<=\|)(\s+)?{{valid_name}}'
       scope: support.class.nunjucks
 
   nunjucks-keywords:
@@ -81,7 +81,7 @@ contexts:
       scope: keyword.control.nunjucks
 
   nunjucks-macros:
-    - match: '(?<=macro\s){{validName}}(\()'
+    - match: '(?<=macro\s){{valid_name}}(\()'
       scope: meta.function-call.nunjucks
       push:
         - meta_content_scope: meta.function.arguments
@@ -92,7 +92,7 @@ contexts:
         - include: nunjucks-strings
 
   nunjucks-functions:
-    - match: '(?<={|\s){{validName}}(\()'
+    - match: '(?<={|\s){{valid_name}}(\()'
       scope: meta.function-call.nunjucks
       push:
         - meta_content_scope: meta.function.arguments
@@ -103,9 +103,9 @@ contexts:
         - include: nunjucks-strings
 
   nunjucks-objects:
-    - match: '(?<=[\s\(\{,]){{validName}}(?=(\b))'
+    - match: '(?<=[\s\(\{,]){{valid_name}}(?=(\b))'
       scope: variable.other.nunjucks
-    - match: '(?<=.){{validName}}(?=(\b))'
+    - match: '(?<=.){{valid_name}}(?=(\b))'
       scope: variable.function.nunjucks # ToDo: Add a right scope for this
 
   nunjucks-operators:
