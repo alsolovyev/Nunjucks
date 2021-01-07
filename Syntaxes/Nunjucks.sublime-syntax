@@ -69,7 +69,7 @@ contexts:
   nunjucks-constants:
     - match: '\b({{reserved}})\b'
       scope: constant.language.nunjucks
-    - match: '([+-]?[0-9])+(\.)?'
+    - match: '(?:\B[-+])?(\b[0-9]+(\.[0-9]*)?)'
       scope: constant.numeric.nunjucks
 
   nunjucks-filters:
