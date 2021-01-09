@@ -1,6 +1,6 @@
 <snippet>
 	<content><![CDATA[
-{% filter ${1:filter} %}
+{% filter ${1:name} %}
 	${0:{# Code goes here... #\}}
 {% endfilter %}
 ]]></content>
