@@ -1,0 +1,49 @@
+{
+  "scope": "text.html.njk meta.satement.njk",
+  "completions": [
+    "if",
+    "elif",
+    "else",
+    "endif",
+    "for",
+    "in",
+    "endfor",
+    "asyncEach",
+    "endeach",
+    "asyncAll",
+    "endall",
+    "macro",
+    "endmacro",
+    "set",
+    "endset",
+    "extends",
+    "block",
+    "endblock",
+    {
+      "trigger": "super",
+      "contents": "super()"
+    },
+    "include",
+    {
+      "trigger": "ignore",
+      "contents": "ignore missing"
+    },
+    "import",
+    "as",
+    "from",
+    {
+      "trigger": "with",
+      "contents": "with context"
+    },
+    "raw",
+    "verbatim",
+    "filter",
+    "endfilter",
+    "call",
+    "endcall",
+    {
+      "trigger": "caller",
+      "contents": "caller()"
+    }
+  ]
+}
