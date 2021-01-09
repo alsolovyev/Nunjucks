@@ -21,7 +21,7 @@ variables:
       filter|endfilter|
       call|endcall
     )
-  reserved: true|false|null
+  reserved: true|false|null|undefined
   valid_name: ([A-Za-z_]+[A-Za-z_0-9]*)
 
 contexts:
