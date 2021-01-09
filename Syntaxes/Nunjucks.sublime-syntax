@@ -84,7 +84,6 @@ contexts:
     - match: '(?<=macro\s){{valid_name}}(\()'
       scope: meta.function-call.njk
       push:
-        - meta_content_scope: meta.function.arguments.njk
         - match: \)
           scope: meta.function-call.njk
           pop: true
@@ -95,7 +94,6 @@ contexts:
     - match: '(?<={|\s){{valid_name}}(\()'
       scope: meta.function-call.njk
       push:
-        - meta_content_scope: meta.function.arguments.njk
         - match: \)
           scope: meta.function-call.njk
           pop: true
