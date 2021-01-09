@@ -10,7 +10,7 @@
     "center",
     {
       "trigger": "default",
-      "contents": "default(${1:default}, ${2:true})"
+      "contents": "default('${1:default}', ${2:true})"
     },
     "dictsort",
     {
