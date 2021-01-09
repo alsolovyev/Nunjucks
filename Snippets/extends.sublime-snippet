@@ -3,6 +3,6 @@
 {% extends '${1:path/to/template}' %}
 ]]></content>
   <tabTrigger>ext</tabTrigger>
-  <scope>text.html.njk,source.njk</scope>
+  <scope>text.html.njk - meta.satement.njk</scope>
   <description>Inherit from template</description>
 </snippet>

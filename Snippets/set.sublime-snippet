@@ -3,6 +3,6 @@
 {% set ${1:variable} = '${2:value}' %}
 ]]></content>
   <tabTrigger>set</tabTrigger>
-  <scope>text.html.njk,source.njk</scope>
+  <scope>text.html.njk - meta.satement.njk</scope>
   <description>Set variable</description>
 </snippet>
