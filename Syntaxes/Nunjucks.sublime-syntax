@@ -49,7 +49,7 @@ contexts:
           captures:
             0: punctuation.section.tag.njk
           push:
-            - meta_scope: meta.tag.template.block.njk
+            - meta_scope: meta.satement.njk
             - match: '(-?}})|(-?%})'
               captures:
                 0: punctuation.section.tag.njk
