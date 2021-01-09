@@ -1,0 +1,17 @@
+{
+  "scope": "text.html.njk meta.satement.njk",
+  "completions": [
+    {
+      "trigger": "range",
+      "contents": "range(${1:start}${2:, stop}${3:, step})"
+    },
+    {
+      "trigger": "cycler",
+      "contents": "cycler(${1:items})"
+    },
+    {
+      "trigger": "joiner",
+      "contents": "joiner(${1:separator})"
+    }
+  ]
+}
