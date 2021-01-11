@@ -4,7 +4,7 @@ name: Nunjucks
 file_extensions:
   - njk
   - nunjucks
-scope: text.html.njk
+scope: source.njk text.html.njk
 
 
 variables:
@@ -46,7 +46,7 @@ contexts:
         - match: '\{%-?'
           scope: punctuation.statement.begin.njk
           push:
-            - meta_scope: meta.statement.njk source.njk
+            - meta_scope: meta.statement.njk source.code.njk
             - match: '-?%\}'
               scope: punctuation.statement.end.njk
               pop: true
@@ -64,7 +64,7 @@ contexts:
         - match: '\{\{-?'
           scope: punctuation.expression.begin.njk
           push:
-            - meta_scope: meta.expression.njk source.njk
+            - meta_scope: meta.expression.njk source.code.njk
             - match: '-?\}\}'
               scope: punctuation.expression.end.njk
               pop: true
