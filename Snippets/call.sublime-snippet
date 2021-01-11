@@ -5,6 +5,6 @@
 {% endcall %}
 ]]></content>
   <tabTrigger>cl</tabTrigger>
-  <scope>text.html.njk - meta.satement.njk</scope>
+  <scope>text.html.njk - source.njk</scope>
   <description>Call a macro with all the text inside the tag</description>
 </snippet>

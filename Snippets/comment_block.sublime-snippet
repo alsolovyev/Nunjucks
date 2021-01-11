@@ -5,6 +5,6 @@ ${0}
 {# END ${1:name} #}
 ]]></content>
   <tabTrigger>cb</tabTrigger>
-  <scope>text.html.njk - meta.satement.njk</scope>
+  <scope>text.html.njk - source.njk</scope>
   <description>Comment block</description>
 </snippet>

@@ -3,6 +3,6 @@
 {% include '${1:path/to/template}' %}
 ]]></content>
   <tabTrigger>inc</tabTrigger>
-  <scope>text.html.njk - meta.satement.njk</scope>
+  <scope>text.html.njk - source.njk</scope>
   <description>Include template</description>
 </snippet>
