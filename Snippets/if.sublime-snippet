@@ -5,6 +5,6 @@
 {% endif %}
 ]]></content>
   <tabTrigger>if</tabTrigger>
-  <scope>text.html.njk - source.njk</scope>
+  <scope>source.njk - source.code.njk</scope>
   <description>If statement</description>
 </snippet>

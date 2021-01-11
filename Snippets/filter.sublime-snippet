@@ -5,6 +5,6 @@
 {% endfilter %}
 ]]></content>
 	<tabTrigger>fl</tabTrigger>
-	<scope>text.html.njk - source.njk</scope>
+	<scope>source.njk - source.code.njk</scope>
 	<description>Call a filter with the contents of the block</description>
 </snippet>
