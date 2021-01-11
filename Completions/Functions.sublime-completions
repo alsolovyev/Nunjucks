@@ -1,5 +1,5 @@
 {
-  "scope": "text.html.njk meta.satement.njk",
+  "scope": "source.njk",
   "completions": [
     {
       "trigger": "range",

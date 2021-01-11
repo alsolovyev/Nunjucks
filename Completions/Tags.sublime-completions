@@ -1,5 +1,5 @@
 {
-  "scope": "text.html.njk meta.satement.njk",
+  "scope": "source.njk",
   "completions": [
     "if",
     "elif",
@@ -14,7 +14,10 @@
     "endall",
     "macro",
     "endmacro",
-    "set",
+    {
+      "trigger": "set",
+      "contents": "set ${1:name} = '${2:value}'"
+    },
     "endset",
     "extends",
     "block",
