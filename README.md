@@ -137,7 +137,8 @@ You can [create](https://mozilla.github.io/nunjucks/api#custom-filters) your own
 
 ### Autocompletions
 
-Currently available completions for all keywords, tags, built-in functions and filters supported by Nunjucks templating engine. Visit the official [documentation](https://mozilla.github.io/nunjucks/templating.html) for more details.
+Currently available completions for all keywords, tags, built-in functions and filters supported by Nunjucks templating engine. Visit the official [documentation](https://mozilla.github.io/nunjucks/templating.html) for more details. 
+
 If for some reason the autocomplete popup window does not appear, you need to add `source.njk` to autocomplete selectors:
 
 - open command palette
