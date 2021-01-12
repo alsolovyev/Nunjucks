@@ -15,7 +15,7 @@ A Sublime Text package for [Nunjucks](https://mozilla.github.io/nunjucks) templa
 - autocompletions for built in tags, filters, functions
 - additional snippets
 - additional keybindings
-- smart indentation
+- smart indentations
 
 ## Installation
 
