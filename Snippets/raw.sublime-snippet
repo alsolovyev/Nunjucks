@@ -5,6 +5,6 @@
 {% endraw %}
 ]]></content>
   <tabTrigger>raw</tabTrigger>
-  <scope>source.njk - source.code.njk</scope>
+  <scope>text.html.njk - meta.statement.njk - meta.expression.njk</scope>
   <description>Output any of the special Nunjucks tags</description>
 </snippet>
