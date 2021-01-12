@@ -3,6 +3,6 @@
 {{ ${1:value} if ${2:condition} }}
 ]]></content>
   <tabTrigger>iif</tabTrigger>
-  <scope>source.njk - source.code.njk</scope>
+  <scope>text.html.njk - meta.statement.njk - meta.expression.njk</scope>
   <description>Inline If statement</description>
 </snippet>

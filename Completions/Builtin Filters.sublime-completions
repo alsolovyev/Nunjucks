@@ -1,5 +1,5 @@
 {
-  "scope": "source.code.njk",
+  "scope": "meta.expression.njk, meta.statement.njk",
   "completions": [
     "abs",
     {

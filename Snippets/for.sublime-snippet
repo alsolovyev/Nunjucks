@@ -5,6 +5,6 @@
 {% endfor %}
 ]]></content>
   <tabTrigger>for</tabTrigger>
-  <scope>source.njk - source.code.njk</scope>
+  <scope>text.html.njk - meta.statement.njk - meta.expression.njk</scope>
   <description>Iterate over arrays and dictionaries</description>
 </snippet>

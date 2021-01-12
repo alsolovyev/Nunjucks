@@ -1,5 +1,5 @@
 {
-  "scope": "source.code.njk",
+  "scope": "meta.statement.njk",
   "completions": [
     "if",
     "elif",
