@@ -2,10 +2,10 @@
 
 A Sublime Text package for [Nunjucks](https://mozilla.github.io/nunjucks) templating engine.
 
-![LICENSE](https://img.shields.io/badge/LICENSE-MIT-blue?style=for-the-badge)
-![LICENSE](https://img.shields.io/badge/ST-Build%203092+-orange?style=for-the-badge&logo=sublime-text)
-![Tag](https://img.shields.io/github/v/tag/alsolovyev/Nunjucks?style=for-the-badge&logo=github&sort=semver)
-![Downloads](https://img.shields.io/packagecontrol/dt/Nunjucks?style=for-the-badge)
+[![LICENSE](https://img.shields.io/badge/LICENSE-MIT-blue?style=for-the-badge)](https://github.com/alsolovyev/Nunjucks/blob/master/LICENSE)
+[![LICENSE](https://img.shields.io/badge/ST-Build%203092+-orange?style=for-the-badge&logo=sublime-text)](https://www.sublimetext.com)
+[![Tag](https://img.shields.io/github/v/tag/alsolovyev/Nunjucks?style=for-the-badge&logo=github&sort=semver)](https://github.com/alsolovyev/Nunjucks/releases)
+[![Downloads](https://img.shields.io/packagecontrol/dt/Nunjucks?style=for-the-badge)](https://packagecontrol.io/packages/Nunjucks)
 
 [![Nunjucks](http://habrastorage.org/webt/n6/v8/-h/n6v8-hsag0t0dynxp1ab0uw7jhe.jpeg)](https://github.com/alsolovyev/Nunjucks)
 
