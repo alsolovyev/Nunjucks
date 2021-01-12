@@ -3,6 +3,6 @@
 {% import '${1:path/to/template}' %}
 ]]></content>
   <tabTrigger>im</tabTrigger>
-  <scope>text.html.njk,source.njk</scope>
+  <scope>source.njk - source.code.njk</scope>
   <description>Import template</description>
 </snippet>

@@ -3,6 +3,6 @@
 {% from '${1:path/to/template}' import ${2:values} %}
 ]]></content>
   <tabTrigger>fr</tabTrigger>
-  <scope>text.html.njk,source.njk</scope>
+  <scope>source.njk - source.code.njk</scope>
   <description>Import specific values from a template</description>
 </snippet>

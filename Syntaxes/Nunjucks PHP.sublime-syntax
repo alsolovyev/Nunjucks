@@ -6,7 +6,7 @@ scope: text.html.njk.php
 contexts:
   main:
     - match: ''
-      push: scope:text.html.njk
+      push: scope:source.njk text.html.njk
       with_prototype:
         #
         # PHP
@@ -15,7 +15,6 @@ contexts:
           scope: punctuation.section.embedded.begin.php
           push:
             - meta_content_scope: source.php
-            - meta_scope: meta.embedded.block.october.php
             - include: 'scope:source.php'
           with_prototype:
             - match: (?=\?>)(\?>)
@@ -26,8 +25,7 @@ contexts:
         - match: '<\?(?i:php|=)?'
           scope: punctuation.section.embedded.begin.php
           push:
-            - meta_content_scope: source.php.october
-            - meta_scope: meta.embedded.line.october.php
+            - meta_content_scope: source.php.njk
             - include: 'scope:source.php'
           with_prototype:
           - match: (?=\?>)(\?>)

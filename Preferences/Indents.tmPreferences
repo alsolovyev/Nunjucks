@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plist version="1.0">
+<dict>
+  <key>name</key>
+  <string>Indents</string>
+  <key>scope</key>
+  <string>text.html.njk</string>
+  <key>settings</key>
+  <dict>
+    <key>increaseIndentPattern</key>
+    <string><![CDATA[(?x)
+        ^\s*+
+        {%-?
+        \s*+
+        \b(if|elif|else|for|asyncEach|asyncAll|macro|block|raw|verbatim|filter|call)\b
+        .*
+        -?%}
+        \s*$
+    ]]></string>
+    <key>decreaseIndentPattern</key>
+    <string><![CDATA[(?x)
+        ^\s*+
+        {%-?
+        \s*+
+        \b(endif|endfor|endeach|endall|endmacro|endblock|endraw|endverbatim|endfilter|endcall)\b
+        .*
+        -?%}
+        \s*$
+    ]]></string>
+  </dict>
+</dict>
+</plist>

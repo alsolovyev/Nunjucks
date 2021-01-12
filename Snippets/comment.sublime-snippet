@@ -3,6 +3,6 @@
 {# $0 #}
 ]]></content>
 	<tabTrigger>co</tabTrigger>
-	<scope>source.njk,text.html.njk</scope>
+	<scope>text.html.njk</scope>
 	<description>Comment block</description>
 </snippet>

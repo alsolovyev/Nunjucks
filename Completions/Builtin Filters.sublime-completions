@@ -1,0 +1,97 @@
+{
+  "scope": "source.code.njk",
+  "completions": [
+    "abs",
+    {
+      "trigger": "batch",
+      "contents": "batch(${1:length})"
+    },
+    "capitalize",
+    "center",
+    {
+      "trigger": "default",
+      "contents": "default('${1:default}', ${2:true})"
+    },
+    "dictsort",
+    {
+      "trigger": "dump",
+      "contents": "dump(${1:indent})"
+    },
+    "escape",
+    "first",
+    "float",
+    "forceescape",
+    {
+      "trigger": "groupby",
+      "contents": "groupby('${1:attribute}')"
+    },
+    {
+      "trigger": "indent",
+      "contents": "indent(${1:indent}, ${2:true})"
+    },
+    "int",
+    {
+      "trigger": "join",
+      "contents": "join('${1:separator}')"
+    },
+    "last",
+    "length",
+    "list",
+    "lower",
+    "nl2br",
+    "random",
+    {
+      "trigger": "reject",
+      "contents": "reject(${1:value})"
+    },
+    {
+      "trigger": "rejectattr",
+      "contents": "rejectattr('${1:attribute')"
+    },
+    {
+      "trigger": "replace",
+      "contents": "replace('${1:from}', '${2:to}')"
+    },
+    "reverse",
+    {
+      "trigger": "round",
+      "contents": "round(${1:number})"
+    },
+    "safe",
+    {
+      "trigger": "select",
+      "contents": "select(${1:test})"
+    },
+    {
+      "trigger": "selectattr",
+      "contents": "selectattr(${1:attribute})"
+    },
+    {
+      "trigger": "slice",
+      "contents": "slice(${1:length})"
+    },
+    {
+      "trigger": "sort",
+      "contents": "sort(${1:arr}, ${2:isReverse}, ${3:isCaseSens}, ${4:attribute})"
+    },
+    "string",
+    {
+      "trigger": "striptags",
+      "contents": "striptags(${1:value}, ${2:false})"
+    },
+    "sum",
+    "title",
+    "trim",
+    {
+      "trigger": "truncate",
+      "contents": "truncate(${1:length}, ${2:true}, ${3:sign})"
+    },
+    "upper",
+    "urlencode",
+    {
+      "trigger": "urlize",
+      "contents": "urlize(${1:length}, ${2:true})"
+    },
+    "wordcount"
+  ]
+}

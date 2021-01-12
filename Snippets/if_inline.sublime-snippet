@@ -1,0 +1,8 @@
+<snippet>
+  <content><![CDATA[
+{{ ${1:value} if ${2:condition} }}
+]]></content>
+  <tabTrigger>iif</tabTrigger>
+  <scope>source.njk - source.code.njk</scope>
+  <description>Inline If statement</description>
+</snippet>

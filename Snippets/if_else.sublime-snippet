@@ -7,6 +7,6 @@
 {% endif %}
 ]]></content>
   <tabTrigger>ife</tabTrigger>
-  <scope>text.html.njk,source.njk</scope>
+  <scope>source.njk - source.code.njk</scope>
   <description>If else statement</description>
 </snippet>
