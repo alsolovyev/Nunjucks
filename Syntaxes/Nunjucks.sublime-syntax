@@ -295,11 +295,11 @@ contexts:
 
   nunjucks-macro-invocation:
     - match: '({{names}})(\()'
-      scope: meta.function-call.begin.njk
+      scope: entity.name.function.njk meta.function-call.begin.njk
       push:
         - meta_content_scope: meta.function.parameters.njk
         - match: (\))
-          scope: meta.function-call.end.njk
+          scope: entity.name.function.njk meta.function-call.end.njk
           pop: true
         - include: nunjucks-strings
         - include: nunjucks-punctuation
