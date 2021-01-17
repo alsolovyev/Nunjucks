@@ -95,6 +95,7 @@ contexts:
     - include: nunjucks-commas
     - include: nunjucks-colons
     - include: nunjucks-semicolons
+    - include: nunjucks-pipe
 
   nunjucks-dots:
     - match: '\.'
@@ -111,6 +112,10 @@ contexts:
   nunjucks-semicolons:
     - match: ';'
       scope: punctuation.terminator.njk
+
+  nunjucks-pipe:
+    - match: '\|'
+      scope: punctuation.accessor.njk
 
   ## Operators
   nunjucks-operators:
@@ -158,6 +163,8 @@ contexts:
         - match: \}
           scope: punctuation.section.braces.end.njk
           pop: true
+        - include: nunjucks-keywords-boolean
+        - include: nunjucks-keywords-other
         - include: nunjucks-strings
         - include: nunjucks-punctuation
         - include: nunjucks-parentheses
@@ -173,6 +180,8 @@ contexts:
         - match: \]
           scope: punctuation.section.brackets.end.njk
           pop: true
+        - include: nunjucks-keywords-boolean
+        - include: nunjucks-keywords-other
         - include: nunjucks-strings
         - include: nunjucks-punctuation
         - include: nunjucks-parentheses
@@ -244,22 +253,23 @@ contexts:
     - include: nunjucks-block-filter
 
   nunjucks-inline-filter:
-    - match: '(\|)(\s+)?({{names}})(\()?'
-      captures:
-        1: punctuation.accessor.njk
-        3: support.class.njk
-        4: support.class.njk
+    # With parentheses
+    - match: '(?<=\|)((\s+)?{{names}}\()'
+      scope: support.class.begin.njk
       push:
-        - match: '(\))?(\s+)?(?=(%\}|\}\}))'
-          scope: support.class.njk
+        - match: '\)'
+          scope: support.class.end.njk
           pop: true
         - include: nunjucks-punctuation
         - include: nunjucks-operators
         - include: nunjucks-strings
         - include: nunjucks-numeric
         - include: nunjucks-keywords-boolean
-        - include: nunjucks-keywords-other
+        - include: nunjucks-keywordss-other
         - include: nunjucks-variables
+    # Wuthout parentheses
+    - match: '(?<=\|)((\s+)?{{names}})'
+      scope: support.class.njk
 
   nunjucks-block-filter:
     - match: (?<=filter)(\s+)({{names}})(\()?
@@ -295,11 +305,11 @@ contexts:
 
   nunjucks-macro-invocation:
     - match: '({{names}})(\()'
-      scope: meta.function-call.begin.njk
+      scope: entity.name.function.njk meta.function-call.begin.njk
       push:
         - meta_content_scope: meta.function.parameters.njk
         - match: (\))
-          scope: meta.function-call.end.njk
+          scope: entity.name.function.njk meta.function-call.end.njk
           pop: true
         - include: nunjucks-strings
         - include: nunjucks-punctuation
@@ -312,8 +322,25 @@ contexts:
 
   ## Variables
   nunjucks-variables:
+    # Object methods
+    - match: '(?<=[\]\w\.])({{names}})(\()'
+      scope: entity.name.function.njk meta.function-call.begin.njk
+      push:
+        - match: (\))
+          scope: entity.name.function.njk meta.function-call.end.njk
+          pop: true
+        - include: nunjucks-strings
+        - include: nunjucks-punctuation
+        - include: nunjucks-parentheses
+        - include: nunjucks-numeric
+        - include: nunjucks-operators
+        - include: nunjucks-keywords-boolean
+        - include: nunjucks-keywords-other
+        - include: nunjucks-variables
+    #  Object properties
     - match: '(?<=[\]\w\.])({{names}})'
       # scope: variable.other.member.njk
       scope: variable.function.njk
+    # Variables
     - match: '{{names}}'
       scope: variable.other.readwrite.njk
