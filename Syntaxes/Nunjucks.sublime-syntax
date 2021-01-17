@@ -318,8 +318,25 @@ contexts:
 
   ## Variables
   nunjucks-variables:
+    # Object methods
+    - match: '(?<=[\]\w\.])({{names}})(\()'
+      scope: entity.name.function.njk meta.function-call.begin.njk
+      push:
+        - match: (\))
+          scope: entity.name.function.njk meta.function-call.end.njk
+          pop: true
+        - include: nunjucks-strings
+        - include: nunjucks-punctuation
+        - include: nunjucks-parentheses
+        - include: nunjucks-numeric
+        - include: nunjucks-operators
+        - include: nunjucks-keywords-boolean
+        - include: nunjucks-keywords-other
+        - include: nunjucks-variables
+    #  Object properties
     - match: '(?<=[\]\w\.])({{names}})'
       # scope: variable.other.member.njk
       scope: variable.function.njk
+    # Variables
     - match: '{{names}}'
       scope: variable.other.readwrite.njk
