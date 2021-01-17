@@ -1,0 +1,14 @@
+The Nunjucks package has been successfully updated to version 2.0.1
+
+Fixes:
+ - highlighting chain filters
+ - highlighting of called methods
+ - highlighting Boolean keywords in parentheses
+
+Improvements:
+ - indentation rules for curly braces
+ - improve macros scope names for better highlighting in different schemes
+
+
+Please report issues here: https://github.com/alsolovyev/Nunjucks/issues
+Created by janeRivas <solovyev.a@icloud.com>
