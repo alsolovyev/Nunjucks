@@ -163,6 +163,8 @@ contexts:
         - match: \}
           scope: punctuation.section.braces.end.njk
           pop: true
+        - include: nunjucks-keywords-boolean
+        - include: nunjucks-keywords-other
         - include: nunjucks-strings
         - include: nunjucks-punctuation
         - include: nunjucks-parentheses
@@ -178,6 +180,8 @@ contexts:
         - match: \]
           scope: punctuation.section.brackets.end.njk
           pop: true
+        - include: nunjucks-keywords-boolean
+        - include: nunjucks-keywords-other
         - include: nunjucks-strings
         - include: nunjucks-punctuation
         - include: nunjucks-parentheses
