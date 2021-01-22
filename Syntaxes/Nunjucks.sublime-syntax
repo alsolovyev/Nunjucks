@@ -265,7 +265,7 @@ contexts:
         - include: nunjucks-strings
         - include: nunjucks-numeric
         - include: nunjucks-keywords-boolean
-        - include: nunjucks-keywordss-other
+        - include: nunjucks-keywords-other
         - include: nunjucks-variables
     # Wuthout parentheses
     - match: '(?<=\|)((\s+)?{{names}})'
