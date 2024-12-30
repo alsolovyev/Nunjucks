@@ -1,10 +1,12 @@
 %YAML 1.2
 ---
 name: Nunjucks
+version: 2
+scope: text.html.njk
+extends: Packages/HTML/HTML.sublime-syntax
 file_extensions:
   - njk
   - nunjucks
-scope: text.html.njk
 
 
 variables:
@@ -39,53 +41,50 @@ variables:
 
 contexts:
   main:
-    - match: ''
-      push: scope:text.html.basic
-      with_prototype:
-        # Statement Block
-        - match: '\{%-?'
-          scope: punctuation.statement.begin.njk
-          push:
-            - meta_scope: meta.statement.njk
-            - match: '-?%\}'
-              scope: punctuation.statement.end.njk
-              pop: true
-            - include: nunjucks-strings
-            - include: nunjucks-punctuation
-            - include: nunjucks-parentheses
-            - include: nunjucks-numeric
-            - include: nunjucks-operators
-            - include: nunjucks-keywords
-            - include: nunjucks-filters
-            - include: nunjucks-macros
-            - include: nunjucks-variables
+    - meta_prepend: true
+    - match: '\{%-?'
+      scope: punctuation.statement.begin.njk
+      push:
+        - meta_scope: meta.statement.njk
+        - match: '-?%\}'
+          scope: punctuation.statement.end.njk
+          pop: true
+        - include: nunjucks-strings
+        - include: nunjucks-punctuation
+        - include: nunjucks-parentheses
+        - include: nunjucks-numeric
+        - include: nunjucks-operators
+        - include: nunjucks-keywords
+        - include: nunjucks-filters
+        - include: nunjucks-macros
+        - include: nunjucks-variables
 
-        # Expression Block
-        - match: '\{\{-?'
-          scope: punctuation.expression.begin.njk
-          push:
-            - meta_scope: meta.expression.njk
-            - match: '-?\}\}'
-              scope: punctuation.expression.end.njk
-              pop: true
-            - include: nunjucks-strings
-            - include: nunjucks-punctuation
-            - include: nunjucks-parentheses
-            - include: nunjucks-numeric
-            - include: nunjucks-operators
-            - include: nunjucks-keywords
-            - include: nunjucks-filters
-            - include: nunjucks-macros
-            - include: nunjucks-variables
+    # Expression Block
+    - match: '\{\{-?'
+      scope: punctuation.expression.begin.njk
+      push:
+        - meta_scope: meta.expression.njk
+        - match: '-?\}\}'
+          scope: punctuation.expression.end.njk
+          pop: true
+        - include: nunjucks-strings
+        - include: nunjucks-punctuation
+        - include: nunjucks-parentheses
+        - include: nunjucks-numeric
+        - include: nunjucks-operators
+        - include: nunjucks-keywords
+        - include: nunjucks-filters
+        - include: nunjucks-macros
+        - include: nunjucks-variables
 
-        # Comment Block
-        - match: '{#-?'
-          scope: punctuation.definition.comment.begin.njk
-          push:
-            - meta_scope: comment.block.njk
-            - match: '-?#}'
-              scope: punctuation.definition.comment.end.njk
-              pop: true
+    # Comment Block
+    - match: '{#-?'
+      scope: punctuation.definition.comment.begin.njk
+      push:
+        - meta_scope: comment.block.njk
+        - match: '-?#}'
+          scope: punctuation.definition.comment.end.njk
+          pop: true
 
 
   # Nunjucks Includes
