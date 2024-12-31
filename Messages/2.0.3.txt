@@ -4,6 +4,8 @@ Fixes:
  - resolved recursion limit issue ("Apparent recursion within a with_prototype action: 25000 context sanity limit hit")
  - improved compatibility with HTML syntax highlighting
 
+Changes:
+ - PHP support has been temporarily removed to fix the "resolved recursion limit issue" and will be added back soon
 
 Please report issues here: https://github.com/alsolovyev/Nunjucks/issues
 Created by janeRivas <solovyev.a@icloud.com>

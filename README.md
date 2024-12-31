@@ -57,7 +57,6 @@ _* to update the package `Package Control: Upgrade Package` select `Nunjucks`_
 ### Syntaxes
 
 - [Nunjucks](https://github.com/alsolovyev/Nunjucks/blob/master/Syntaxes/Nunjucks.sublime-syntax) - HTML basic
-- [Nunjucks PHP](https://github.com/alsolovyev/Nunjucks/blob/master/Syntaxes/Nunjucks%20PHP.sublime-syntax) - with PHP syntax support
 
 ### Filters
 
