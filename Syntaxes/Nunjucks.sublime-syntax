@@ -40,10 +40,25 @@ variables:
 
 
 contexts:
+  prototype:
+    - meta_prepend: true
+    - include: nunjucks
+
   main:
     - meta_prepend: true
+    - meta_scope: meta.template.njk
+
+  # Nunjucks Includes
+  nunjucks:
+    - include: nunjucks-statement
+    - include: nunjucks-expression
+    - include: nunjucks-comment
+
+  ## Base
+  nunjucks-statement:
     - match: '\{%-?'
       scope: punctuation.statement.begin.njk
+      pop: true
       push:
         - meta_scope: meta.statement.njk
         - match: '-?%\}'
@@ -59,9 +74,10 @@ contexts:
         - include: nunjucks-macros
         - include: nunjucks-variables
 
-    # Expression Block
+  nunjucks-expression:
     - match: '\{\{-?'
       scope: punctuation.expression.begin.njk
+      pop: true
       push:
         - meta_scope: meta.expression.njk
         - match: '-?\}\}'
@@ -77,17 +93,16 @@ contexts:
         - include: nunjucks-macros
         - include: nunjucks-variables
 
-    # Comment Block
+  nunjucks-comment:
     - match: '{#-?'
       scope: punctuation.definition.comment.begin.njk
+      pop: true
       push:
         - meta_scope: comment.block.njk
         - match: '-?#}'
           scope: punctuation.definition.comment.end.njk
           pop: true
 
-
-  # Nunjucks Includes
   ## Punctuation
   nunjucks-punctuation:
     - include: nunjucks-dots
