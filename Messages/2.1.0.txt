@@ -1,0 +1,18 @@
+The Nunjucks package has been successfully updated to version 2.1.0
+
+Fixes:
+ - resolve highlighting issue inside HTML tags with attributes
+
+Features:
+ - add PHP support
+
+Refactor:
+ - moved context definitions into separate named blocks: `nunjucks-statement`,
+   `nunjucks-expression`, and `nunjucks-comment`
+ - added a new `prototype` context to include `nunjucks` package globally
+ - simplified the `main` context with a single reference to `meta.template.njk`
+ - updated statement, expression, and comment blocks to use individual includes for
+   relevant Nunjucks elements
+
+Please report issues here: https://github.com/alsolovyev/Nunjucks/issues
+Created by janeRivas <solovyev.a@icloud.com>
