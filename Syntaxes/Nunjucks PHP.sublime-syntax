@@ -1,0 +1,28 @@
+%YAML 1.2
+---
+name: Nunjucks PHP
+version: 2
+scope: text.html.njk
+extends: Packages/HTML/HTML.sublime-syntax
+
+
+contexts:
+  prototype:
+    - meta_prepend: true
+    - include: Nunjucks.sublime-syntax#nunjucks
+    - include: php-block
+
+  main:
+    - meta_prepend: true
+    - meta_scope: meta.template.njk
+
+  # PHP
+  php-block:
+  - match: <\?(?:php|=)
+    scope: punctuation.section.embedded.begin.php
+    push:
+      - meta_scope: source.php.embedded
+      - match: \?>
+        scope: punctuation.section.embedded.end.php
+        pop: true
+      - include: scope:source.php
