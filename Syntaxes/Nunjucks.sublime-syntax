@@ -31,7 +31,7 @@ variables:
       macro|endmacro|
       set|endset|
       raw|endraw|
-      verbatim|
+      verbatim|endverbatim|
       filter|endfilter|
       call|endcall|
       with|context
@@ -50,6 +50,7 @@ contexts:
 
   # Nunjucks Includes
   nunjucks:
+    - include: nunjucks-raw
     - include: nunjucks-statement
     - include: nunjucks-expression
     - include: nunjucks-comment
@@ -358,3 +359,24 @@ contexts:
     # Variables
     - match: '{{names}}'
       scope: variable.other.readwrite.njk
+
+  ## Raw
+  nunjucks-raw:
+    - match: '(\{%-?)\s*(raw)\s*(-?%\})'
+      scope: meta.statement.njk
+      captures:
+        1: punctuation.statement.begin.njk
+        2: keyword.control.njk
+        3: punctuation.statement.end.njk
+      embed: scope:text.html.basic
+      embed_scope: meta.raw.njk
+      escape: '(?=\{%-?\s*endraw\s*-?%\})'
+    - match: '(\{%-?)\s*(verbatim)\s*(-?%\})'
+      scope: meta.statement.njk
+      captures:
+        1: punctuation.statement.begin.njk
+        2: keyword.control.njk
+        3: punctuation.statement.end.njk
+      embed: scope:text.html.basic
+      embed_scope: meta.raw.njk
+      escape: '(?=\{%-?\s*endverbatim\s*-?%\})'
