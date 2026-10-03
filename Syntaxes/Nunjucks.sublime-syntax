@@ -58,7 +58,6 @@ contexts:
   nunjucks-statement:
     - match: '\{%-?'
       scope: punctuation.statement.begin.njk
-      pop: true
       push:
         - meta_scope: meta.statement.njk
         - match: '-?%\}'
@@ -77,7 +76,6 @@ contexts:
   nunjucks-expression:
     - match: '\{\{-?'
       scope: punctuation.expression.begin.njk
-      pop: true
       push:
         - meta_scope: meta.expression.njk
         - match: '-?\}\}'
@@ -96,12 +94,84 @@ contexts:
   nunjucks-comment:
     - match: '{#-?'
       scope: punctuation.definition.comment.begin.njk
-      pop: true
       push:
         - meta_scope: comment.block.njk
         - match: '-?#}'
           scope: punctuation.definition.comment.end.njk
           pop: true
+
+  ## Embedded HTML contexts
+  tag-attribute-value-content:
+    - meta_prepend: true
+    - include: nunjucks
+
+  script-javascript-content:
+    - meta_include_prototype: false
+    - match: \s*((<!\[)(CDATA)(\[))
+      captures:
+        1: meta.tag.sgml.cdata.html
+        2: punctuation.definition.tag.begin.html
+        3: keyword.declaration.cdata.html
+        4: punctuation.definition.tag.begin.html
+      pop: 1
+      embed: njk-js
+      embed_scope: meta.tag.sgml.cdata.html source.js.embedded.html
+      escape: \]\]>
+      escape_captures:
+        0: meta.tag.sgml.cdata.html punctuation.definition.tag.end.html
+    - match: '{{script_content_begin}}'
+      captures:
+        1: comment.block.html punctuation.definition.comment.begin.html
+      pop: 1
+      embed: njk-js
+      embed_scope: source.js.embedded.html
+      escape: '{{script_content_end}}'
+      escape_captures:
+        1: source.js.embedded.html
+        2: comment.block.html punctuation.definition.comment.end.html
+        3: source.js.embedded.html
+        4: comment.block.html punctuation.definition.comment.end.html
+
+  style-css-content:
+    - meta_include_prototype: false
+    - match: \s*((<!\[)(CDATA)(\[))
+      captures:
+        1: meta.tag.sgml.cdata.html
+        2: punctuation.definition.tag.begin.html
+        3: keyword.declaration.cdata.html
+        4: punctuation.definition.tag.begin.html
+      pop: 1
+      embed: njk-css
+      embed_scope: meta.tag.sgml.cdata.html source.css.embedded.html
+      escape: \]\]>
+      escape_captures:
+        0: meta.tag.sgml.cdata.html punctuation.definition.tag.end.html
+    - match: '{{style_content_begin}}'
+      captures:
+        1: comment.block.html punctuation.definition.comment.begin.html
+      pop: 1
+      embed: njk-css
+      embed_scope: source.css.embedded.html
+      escape: '{{style_content_end}}'
+      escape_captures:
+        1: source.css.embedded.html
+        2: comment.block.html punctuation.definition.comment.end.html
+        3: source.css.embedded.html
+        4: comment.block.html punctuation.definition.comment.end.html
+
+  njk-js:
+    - meta_include_prototype: false
+    - match: ''
+      push: scope:source.js
+      with_prototype:
+        - include: nunjucks
+
+  njk-css:
+    - meta_include_prototype: false
+    - match: ''
+      push: scope:source.css
+      with_prototype:
+        - include: nunjucks
 
   ## Punctuation
   nunjucks-punctuation:
@@ -351,7 +421,7 @@ contexts:
         - include: nunjucks-keywords-boolean
         - include: nunjucks-keywords-other
         - include: nunjucks-variables
-    #  Object properties
+    # Object properties
     - match: '(?<=[\]\w\.])({{names}})'
       # scope: variable.other.member.njk
       scope: variable.function.njk
