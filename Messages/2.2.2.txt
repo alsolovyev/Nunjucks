@@ -1,0 +1,20 @@
+The Nunjucks package has been successfully updated to version 2.2.2
+
+Fixes:
+ - the body of `{% raw %}` and `{% verbatim %}` blocks is no longer highlighted
+   as template code
+ - highlight `{{ }}`, `{% %}` and `{# #}` inside HTML attribute values,
+   `<script>` and `<style>` blocks
+ - add the missing `endverbatim` keyword
+
+Refactor:
+ - added a new `nunjucks-raw` context that embeds plain HTML until the matching
+   `{% endraw %}` / `{% endverbatim %}`
+ - embedded JavaScript and CSS through the `njk-js` and `njk-css` contexts, which
+   inject the `nunjucks` rules into them
+ - added `nunjucks` to the shared `tag-attribute-value-content` context
+ - removed `pop: true` from the `nunjucks-statement`, `nunjucks-expression` and
+   `nunjucks-comment` blocks, so they no longer pop the surrounding context
+
+Please report issues here: https://github.com/alsolovyev/Nunjucks/issues
+Created by janeRivas <solovyev.a@icloud.com>
