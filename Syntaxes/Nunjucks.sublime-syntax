@@ -16,13 +16,13 @@ variables:
   operators_arithmetic: '\+\+|\+|-|\*\*|\*|\/|%'
   operators_assignment: '\?\?=|\|\|=|\|=|\&\&=|\&=|\^=|>>>=|>>=|<<=|\*\*=|\*=|%=|\/=|-=|\+=|='
   operators_comparison: '<=|<|===|!==|!=|==|>=|>'
-  operators_logical: '&&|\|\||!|\bnot\b|\bor\b|\band\b'
+  operators_logical: '&&|\|\||!|\bnot\b|\bor\b|\band\b|(?<!\.)\bis\b'
   operators_bitwise: '>>>|>>|<<|~|\^|\|&'
   operators_ternary: '\?|:'
 
   keywords_boolean: true|false
   keywords_other: null|undefined
-  keywords_conditional: if|elif|else|endif
+  keywords_conditional: if|elif|elseif|else|endif
   keywords_template: extends|import|include|from|as|block|endblock
   keywords_reserved: |-
     (?x:
@@ -96,6 +96,7 @@ contexts:
     - match: '{#-?'
       scope: punctuation.definition.comment.begin.njk
       push:
+        - meta_include_prototype: false
         - meta_scope: comment.block.njk
         - match: '-?#}'
           scope: punctuation.definition.comment.end.njk
@@ -133,6 +134,33 @@ contexts:
         3: source.js.embedded.html
         4: comment.block.html punctuation.definition.comment.end.html
 
+  script-json-content:
+    - meta_include_prototype: false
+    - match: \s*((<!\[)(CDATA)(\[))
+      captures:
+        1: meta.tag.sgml.cdata.html
+        2: punctuation.definition.tag.begin.html
+        3: keyword.declaration.cdata.html
+        4: punctuation.definition.tag.begin.html
+      pop: 1
+      embed: njk-json
+      embed_scope: meta.tag.sgml.cdata.html source.json.embedded.html
+      escape: \]\]>
+      escape_captures:
+        0: meta.tag.sgml.cdata.html punctuation.definition.tag.end.html
+    - match: '{{script_content_begin}}'
+      captures:
+        1: comment.block.html punctuation.definition.comment.begin.html
+      pop: 1
+      embed: njk-json
+      embed_scope: source.json.embedded.html
+      escape: '{{script_content_end}}'
+      escape_captures:
+        1: source.json.embedded.html
+        2: comment.block.html punctuation.definition.comment.end.html
+        3: source.json.embedded.html
+        4: comment.block.html punctuation.definition.comment.end.html
+
   style-css-content:
     - meta_include_prototype: false
     - match: \s*((<!\[)(CDATA)(\[))
@@ -160,10 +188,41 @@ contexts:
         3: source.css.embedded.html
         4: comment.block.html punctuation.definition.comment.end.html
 
+  tag-style-attribute-value:
+    - match: \"
+      scope: meta.string.html string.quoted.double.html punctuation.definition.string.begin.html
+      embed: njk-css-rule-list
+      embed_scope: meta.string.html source.css.embedded.html
+      escape: \"
+      escape_captures:
+        0: meta.string.html string.quoted.double.html punctuation.definition.string.end.html
+    - match: \'
+      scope: meta.string.html string.quoted.single.html punctuation.definition.string.begin.html
+      embed: njk-css-rule-list
+      embed_scope: meta.string.html source.css.embedded.html
+      escape: \'
+      escape_captures:
+        0: meta.string.html string.quoted.single.html punctuation.definition.string.end.html
+    - include: else-pop
+
+  njk-css-rule-list:
+    - meta_include_prototype: false
+    - match: ''
+      push: scope:source.css#rule-list-body
+      with_prototype:
+        - include: nunjucks
+
   njk-js:
     - meta_include_prototype: false
     - match: ''
       push: scope:source.js
+      with_prototype:
+        - include: nunjucks
+
+  njk-json:
+    - meta_include_prototype: false
+    - match: ''
+      push: scope:source.json
       with_prototype:
         - include: nunjucks
 
@@ -279,14 +338,20 @@ contexts:
     - match: \'
       scope: punctuation.definition.string.begin.njk
       push:
+        - meta_include_prototype: false
         - meta_scope: string.quoted.single.njk
+        - match: \\.
+          scope: constant.character.escape.njk
         - match: \'
           scope: punctuation.definition.string.end.njk
           pop: true
     - match: \"
       scope: punctuation.definition.string.begin.njk
       push:
+        - meta_include_prototype: false
         - meta_scope: string.quoted.double.njk
+        - match: \\.
+          scope: constant.character.escape.njk
         - match: \"
           scope: punctuation.definition.string.end.njk
           pop: true
@@ -313,23 +378,23 @@ contexts:
     - include: nunjucks-keywords-other
 
   nunjucks-keywords-conditional:
-    - match: '\b({{keywords_conditional}})\b'
+    - match: '(?<!\.)\b({{keywords_conditional}})\b'
       scope: keyword.control.conditional.njk
 
   nunjucks-keywords-template:
-    - match: '\b({{keywords_template}})\b'
+    - match: '(?<!\.)\b({{keywords_template}})\b'
       scope: keyword.control.import.njk
 
   nunjucks-keywords-reserved:
-    - match: '\b({{keywords_reserved}})\b'
+    - match: '(?<!\.)\b({{keywords_reserved}})\b'
       scope: keyword.control.njk
 
   nunjucks-keywords-boolean:
-    - match: '\b({{keywords_boolean}})\b'
+    - match: '(?<!\.)\b({{keywords_boolean}})\b'
       scope: constant.language.njk
 
   nunjucks-keywords-other:
-    - match: '\b({{keywords_other}})\b'
+    - match: '(?<!\.)\b({{keywords_other}})\b'
       scope: constant.language.njk
 
   ## Filter
@@ -360,7 +425,7 @@ contexts:
     - match: (?<=filter)(\s+)({{names}})(\()?
       scope: support.class.njk
       push:
-        - match: '(\))?(\s+)?(?=%\})'
+        - match: '(\))?(\s+)?(?=-?%\})'
           scope: support.class.njk
           pop: true
         - include: nunjucks-punctuation
