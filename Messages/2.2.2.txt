@@ -1,0 +1,31 @@
+The Nunjucks package has been successfully updated to version 2.2.2
+
+Fixes:
+ - the body of `{% raw %}` and `{% verbatim %}` blocks is no longer highlighted
+   as template code
+ - highlight `{{ }}`, `{% %}` and `{# #}` inside HTML attribute values,
+   `<script>` and `<style>` blocks
+ - template tags are no longer parsed inside comments and strings, so
+   `{{ '{{' }}` and `{# {{ x }} #}` work as expected
+ - support escape sequences in strings, e.g. `{{ "say \"hi\"" }}`
+ - keywords are no longer highlighted after a dot, e.g. `{{ item.set }}`
+ - handle whitespace control after a block filter: `{% filter upper -%}`
+ - add the missing `endverbatim` keyword
+ - highlight `{{ }}` and `{% %}` inside JSON scripts and `style` attributes
+
+Features:
+ - add `elseif` keyword and `is` operator
+
+Refactor:
+ - added a new `nunjucks-raw` context that embeds plain HTML until the matching
+   `{% endraw %}` / `{% endverbatim %}`
+ - embedded JavaScript and CSS through the `njk-js` and `njk-css` contexts, which
+   inject the `nunjucks` rules into them
+ - added `nunjucks` to the shared `tag-attribute-value-content` context
+ - removed `pop: true` from the `nunjucks-statement`, `nunjucks-expression` and
+   `nunjucks-comment` blocks, so they no longer pop the surrounding context
+ - disabled the prototype inside the `nunjucks-comment` and `nunjucks-strings`
+   contexts
+
+Please report issues here: https://github.com/alsolovyev/Nunjucks/issues
+Created by janeRivas <solovyev.a@icloud.com>
