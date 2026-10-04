@@ -16,13 +16,13 @@ variables:
   operators_arithmetic: '\+\+|\+|-|\*\*|\*|\/|%'
   operators_assignment: '\?\?=|\|\|=|\|=|\&\&=|\&=|\^=|>>>=|>>=|<<=|\*\*=|\*=|%=|\/=|-=|\+=|='
   operators_comparison: '<=|<|===|!==|!=|==|>=|>'
-  operators_logical: '&&|\|\||!|\bnot\b|\bor\b|\band\b'
+  operators_logical: '&&|\|\||!|\bnot\b|\bor\b|\band\b|(?<!\.)\bis\b'
   operators_bitwise: '>>>|>>|<<|~|\^|\|&'
   operators_ternary: '\?|:'
 
   keywords_boolean: true|false
   keywords_other: null|undefined
-  keywords_conditional: if|elif|else|endif
+  keywords_conditional: if|elif|elseif|else|endif
   keywords_template: extends|import|include|from|as|block|endblock
   keywords_reserved: |-
     (?x:
