@@ -296,7 +296,7 @@ contexts:
     - match: (?<=filter)(\s+)({{names}})(\()?
       scope: support.class.njk
       push:
-        - match: '(\))?(\s+)?(?=%\})'
+        - match: '(\))?(\s+)?(?=-?%\})'
           scope: support.class.njk
           pop: true
         - include: nunjucks-punctuation
