@@ -11,6 +11,7 @@ Fixes:
  - keywords are no longer highlighted after a dot, e.g. `{{ item.set }}`
  - handle whitespace control after a block filter: `{% filter upper -%}`
  - add the missing `endverbatim` keyword
+ - highlight `{{ }}` and `{% %}` inside JSON scripts and `style` attributes
 
 Features:
  - add `elseif` keyword and `is` operator
