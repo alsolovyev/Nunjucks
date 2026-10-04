@@ -249,23 +249,23 @@ contexts:
     - include: nunjucks-keywords-other
 
   nunjucks-keywords-conditional:
-    - match: '\b({{keywords_conditional}})\b'
+    - match: '(?<!\.)\b({{keywords_conditional}})\b'
       scope: keyword.control.conditional.njk
 
   nunjucks-keywords-template:
-    - match: '\b({{keywords_template}})\b'
+    - match: '(?<!\.)\b({{keywords_template}})\b'
       scope: keyword.control.import.njk
 
   nunjucks-keywords-reserved:
-    - match: '\b({{keywords_reserved}})\b'
+    - match: '(?<!\.)\b({{keywords_reserved}})\b'
       scope: keyword.control.njk
 
   nunjucks-keywords-boolean:
-    - match: '\b({{keywords_boolean}})\b'
+    - match: '(?<!\.)\b({{keywords_boolean}})\b'
       scope: constant.language.njk
 
   nunjucks-keywords-other:
-    - match: '\b({{keywords_other}})\b'
+    - match: '(?<!\.)\b({{keywords_other}})\b'
       scope: constant.language.njk
 
   ## Filter
