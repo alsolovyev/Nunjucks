@@ -211,6 +211,8 @@ contexts:
       push:
         - meta_include_prototype: false
         - meta_scope: string.quoted.single.njk
+        - match: \\.
+          scope: constant.character.escape.njk
         - match: \'
           scope: punctuation.definition.string.end.njk
           pop: true
@@ -219,6 +221,8 @@ contexts:
       push:
         - meta_include_prototype: false
         - meta_scope: string.quoted.double.njk
+        - match: \\.
+          scope: constant.character.escape.njk
         - match: \"
           scope: punctuation.definition.string.end.njk
           pop: true
