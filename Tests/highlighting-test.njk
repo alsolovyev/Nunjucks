@@ -1,0 +1,395 @@
+<!-- ============================ 1. DELIMITERS AND COMMENTS ============================ -->
+
+<!-- 1.1 Output expression
+     Expect: name is a variable; double braces are expression punctuation; all inside meta.expression.njk -->
+{{ name }}
+
+<!-- 1.2 Statement
+     Expect: if and endif are conditional keywords; ok is a variable; percent-braces are statement punctuation -->
+{% if ok %}yes{% endif %}
+
+<!-- 1.3 Comment
+     Expect: the whole thing, including delimiters, is comment.block.njk -->
+{# a comment #}
+
+<!-- 1.4 Multiline comment
+     Expect: all three lines are comment -->
+{#
+  line one
+  line two
+#}
+
+<!-- 1.5 Whitespace control
+     Expect: the dash is part of the delimiter punctuation, not an operator -->
+{%- if ok -%}x{%- endif -%}
+{{- name -}}
+{#- comment -#}
+
+<!-- 1.6 Plain HTML is untouched
+     Expect: single braces, percent and hash signs are ordinary HTML text -->
+<p class="a">text { not a tag } and % and #</p>
+
+
+<!-- ================================= 2. STRINGS ================================= -->
+
+<!-- 2.1 Double and single quotes
+     Expect: string.quoted.double.njk and string.quoted.single.njk; quotes are string punctuation -->
+{{ "double" }} {{ 'single' }}
+
+<!-- 2.2 Escape sequences
+     Expect: backslash plus next character is an escape; the string does not end early -->
+{{ "say \"hi\"" }} {{ 'it\'s' }} {{ "path\\" }}
+
+<!-- 2.3 Delimiters inside strings
+     Expect: plain string text, no nested tag; the next expression is normal -->
+{{ '{{' }} {{ "{%" }} {{ "{#" }} {{ after_strings }}
+
+<!-- 2.4 String in a statement
+     Expect: string colour after the equals sign -->
+{% set greeting = "hello" %}
+
+
+<!-- ================================= 3. NUMBERS ================================= -->
+
+<!-- 3.1 Integers
+     Expect: constant.numeric.integer.njk, sign included -->
+{{ 42 }} {{ -7 }} {{ +3 }}
+
+<!-- 3.2 Floats
+     Expect: constant.numeric.float.njk -->
+{{ 3.14 }} {{ -0.5 }}
+
+<!-- 3.3 Numbers as arguments and indexes
+     Expect: numbers are numeric, brackets and parentheses are not part of the number -->
+{{ items[0] }} {{ range(1, 5) }}
+
+
+<!-- ================================ 4. OPERATORS ================================ -->
+
+<!-- 4.1 Arithmetic
+     Expect: keyword.operator.arithmetic.njk on + - * / % ** -->
+{{ a + b - c * d / e % f ** 2 }}
+
+<!-- 4.2 Comparison
+     Expect: keyword.operator.comparison.njk on == != === < >= ; or is a logical operator -->
+{% if a == b or a != b or a === b or a < b or a >= b %}x{% endif %}
+
+<!-- 4.3 Logical words
+     Expect: and, or, not are keyword.operator.logical.njk -->
+{% if a and b or not c %}x{% endif %}
+
+<!-- 4.4 The is test
+     Expect: is is a logical operator; defined stays a plain name -->
+{% if value is defined %}x{% endif %}
+
+<!-- 4.5 The in operator
+     Expect: in is keyword.control.njk -->
+{% if "a" in list %}x{% endif %}
+
+<!-- 4.6 Assignment
+     Expect: equals sign is keyword.operator.assignment.njk -->
+{% set total = price * 2 %}
+
+<!-- 4.7 Inline if
+     Expect: if and else are conditional keywords inside an expression -->
+{{ "yes" if ok else "no" }}
+
+
+<!-- ================================ 5. KEYWORDS ================================ -->
+
+<!-- 5.1 Conditionals
+     Expect: if, elif, elseif, else, endif all keyword.control.conditional.njk -->
+{% if a %}A{% elif b %}B{% elseif c %}C{% else %}D{% endif %}
+
+<!-- 5.2 Loop
+     Expect: for, in, endfor are keyword.control.njk; comma is a separator -->
+{% for key, value in obj %}{{ key }}: {{ value }}{% endfor %}
+
+<!-- 5.3 Async loops
+     Expect: asyncEach, endeach, asyncAll, endall are keywords -->
+{% asyncEach item in items %}{{ item }}{% endeach %}
+{% asyncAll item in items %}{{ item }}{% endall %}
+
+<!-- 5.4 Set
+     Expect: set and endset are keywords; x is a variable -->
+{% set x = 1 %}
+{% set body %}text{% endset %}
+
+<!-- 5.5 Inheritance
+     Expect: extends, block, endblock are keyword.control.import.njk; strings are strings -->
+{% extends "base.njk" %}
+{% block content %}x{% endblock %}
+
+<!-- 5.6 Include and import
+     Expect: include, import, from, as are keyword.control.import.njk -->
+{% include "partial.njk" %}
+{% import "macros.njk" as m %}
+{% from "macros.njk" import field as f %}
+
+<!-- 5.7 With context
+     Expect: with and context are keyword.control.njk -->
+{% import "macros.njk" as m with context %}
+
+<!-- 5.8 Constants
+     Expect: constant.language.njk -->
+{{ true }} {{ false }} {{ null }} {{ undefined }}
+
+<!-- 5.9 Call block
+     Expect: call and endcall are keywords; box( is a function call -->
+{% call box("title") %}body{% endcall %}
+
+
+<!-- ================================ 6. FILTERS ================================ -->
+
+<!-- 6.1 Simple filter
+     Expect: pipe is punctuation.accessor.njk; upper is support.class.njk -->
+{{ name | upper }}
+
+<!-- 6.2 No spaces, chained
+     Expect: both filters are highlighted as filters -->
+{{ name|upper|trim }}
+
+<!-- 6.3 Filter with arguments
+     Expect: name and opening paren are support.class.begin.njk; closing paren is support.class.end.njk -->
+{{ text | truncate(20, true) }}
+
+<!-- 6.4 Chain with arguments
+     Expect: join and upper both filters; the string inside is a string -->
+{{ list | join(", ") | upper }}
+
+<!-- 6.5 The default filter
+     Expect: default is a filter, not a keyword -->
+{{ value | default("n/a") }}
+
+<!-- 6.6 Block filter
+     Expect: the name after the filter keyword is support.class.njk -->
+{% filter upper %}text{% endfilter %}
+{% filter replace("a", "b") %}text{% endfilter %}
+
+
+<!-- ================================ 7. MACROS ================================ -->
+
+<!-- 7.1 Declaration
+     Expect: field( and ) are entity.name.function.njk; parameters are variable.parameter.njk -->
+{% macro field(name, type="text") %}x{% endmacro %}
+
+<!-- 7.2 Invocation
+     Expect: field( is a function call; arguments are inside meta.function.parameters.njk -->
+{{ field("email", "text") }}
+
+<!-- 7.3 Global functions
+     Expect: range and cycler highlighted as function calls -->
+{{ range(0, 3) }} {{ cycler("a", "b") }}
+
+
+<!-- ================================ 8. VARIABLES ================================ -->
+
+<!-- 8.1 Simple variable
+     Expect: variable.other.readwrite.njk -->
+{{ user }}
+
+<!-- 8.2 Property
+     Expect: dot is punctuation.accessor.njk; name is a property (variable.function.njk at the moment) -->
+{{ user.name }}
+
+<!-- 8.3 Nested properties
+     Expect: only the first word is a variable, the rest are properties -->
+{{ page.author.address.city }}
+
+<!-- 8.4 Index access
+     Expect: brackets are punctuation; the key is a string; property after the bracket still works -->
+{{ items[0].title }} {{ map["key"] }}
+
+<!-- 8.5 Method call
+     Expect: method name and paren are a function call (entity.name.function.njk) -->
+{{ user.getName() }} {{ list.slice(1, 3) }}
+
+<!-- 8.6 Loop variable
+     Expect: loop is a variable, index and first are properties -->
+{{ loop.index }} {{ loop.first }}
+
+
+<!-- ============================= 9. OBJECTS AND ARRAYS ============================= -->
+
+<!-- 9.1 Object literal
+     Expect: meta.object-literal.njk; braces are punctuation.section.braces; colon is a separator -->
+{% set cfg = {a: 1, b: "two", c: true} %}
+
+<!-- 9.2 Array literal
+     Expect: meta.sequence.njk; brackets are punctuation.section.brackets -->
+{% set list = [1, "two", true, null] %}
+
+<!-- 9.3 Nested literals
+     Expect: every bracket and brace closes correctly; the statement ends at percent-brace -->
+{% set deep = {items: [1, 2, {k: "v"}]} %}
+
+<!-- 9.4 Object ending right before the expression end
+     Expect: the last double brace ends the expression; the text after is plain -->
+{{ {a: {b: 1}} }} plain text
+
+
+<!-- ============================ 10. RAW AND VERBATIM ============================ -->
+
+<!-- 10.1 Raw block
+     Expect: the line inside is meta.raw.njk only (no expression, statement or comment scopes);
+             raw and endraw are keywords; after_raw is a normal expression -->
+{% raw %}
+  {{ vue_var }} {% not_a_tag %} {# not a comment #}
+{% endraw %}
+{{ after_raw }}
+
+<!-- 10.2 Verbatim, one line
+     Expect: x is plain text; endverbatim is a keyword -->
+{% verbatim %}{{ x }}{% endverbatim %}
+
+<!-- 10.3 Whitespace control
+     Expect: same as raw -->
+{%- raw -%}{{ a }}{%- endraw -%}
+
+<!-- 10.4 HTML inside raw
+     Expect: the div tag keeps HTML colours; the braces inside are plain -->
+{% raw %}<div v-if="show">{{ item }}</div>{% endraw %}
+
+<!-- 10.5 Wrong closing tag
+     Expect: endverbatim does not close raw; still_raw is plain text -->
+{% raw %}{% endverbatim %}{{ still_raw }}{% endraw %}
+
+
+<!-- ============================ 11. HTML ATTRIBUTES ============================ -->
+
+<!-- 11.1 Double quotes
+     Expect: url is an expression inside the string; the rest of the tag is HTML -->
+<a href="{{ url }}">link</a>
+
+<!-- 11.2 Single quotes
+     Expect: same as 11.1 -->
+<a href='{{ url }}'>link</a>
+
+<!-- 11.3 Unquoted
+     Expect: url is an expression; the tag still closes normally -->
+<a href={{ url }}>link</a>
+
+<!-- 11.4 Statement in class
+     Expect: if, on, endif highlighted as a statement inside the class string -->
+<div class="box {% if on %}on{% endif %}">text</div>
+
+<!-- 11.5 Text around the expression
+     Expect: path text stays string; file and alt are expressions; e is a filter -->
+<img src="/img/{{ file }}.png" alt="{{ alt | e }}">
+
+<!-- 11.6 Several attributes
+     Expect: every attribute works; text after the tag is plain -->
+<div id="item-{{ id }}" data-name="{{ name | upper }}">text</div>
+
+<!-- 11.7 Plain attributes
+     Expect: no change, normal HTML colours -->
+<a href="/page.html" class="plain">text</a>
+
+<!-- 11.8 Style attribute (CSS)
+     Expect: the expression is a Nunjucks expression; the rest of the value is CSS -->
+<div style="color: {{ c }}">x</div>
+<div style="width: {{ w }}px; {% if hidden %}display: none;{% endif %}">x</div>
+<div style='margin: {{ m }}'>x</div>
+
+<!-- ============================ 12. SCRIPT AND STYLE ============================ -->
+
+<!-- 12.1 Expressions in script
+     Expect: the double-brace parts are Nunjucks expressions (not a JS object or string); the rest is JS -->
+<script>
+  var data = {{ data | dump | safe }};
+  var name = "{{ name }}";
+</script>
+
+<!-- 12.2 Statement in script
+     Expect: if, debug, endif highlighted as a statement; console.log stays JS -->
+<script>
+  {% if debug %}console.log(1);{% endif %}
+</script>
+
+<!-- 12.3 Expressions in style
+     Expect: color and w are expressions; the rest is CSS -->
+<style>.box { color: {{ color }}; width: {{ w }}px; }</style>
+
+<!-- 12.4 Plain script and style
+     Expect: no change, normal JS and CSS colours -->
+<script>const a = [1, 2].map(n => n * 2);</script>
+<style>.plain { margin: 0 auto; }</style>
+
+<!-- 12.5 After the closing tags
+     Expect: back to normal template mode -->
+{{ after_blocks }}
+{# real comment #}
+
+<!-- 12.6 JSON script
+     Expect: the expression is a Nunjucks expression (no invalid.illegal); script tags are normal -->
+<script type="application/json">{{ data | dump | safe }}</script>
+
+
+<!-- ======================== 13. REGRESSION (latest fixes) ======================== -->
+
+<!-- 13.1 Tags inside strings
+     Expect: nothing nested; after_13_1 is a normal expression -->
+{{ '{{' }} {{ "{%" }} {{ after_13_1 }}
+
+<!-- 13.2 Tags inside a comment
+     Expect: the whole comment is one comment colour; after_13_2 is a normal expression -->
+{# {{ commented }} {% raw %} #} {{ after_13_2 }}
+
+<!-- 13.3 Escapes in strings
+     Expect: escapes highlighted; after_13_3 is a normal expression -->
+{{ "say \"hi\"" }} {{ "path\\" }} {{ after_13_3 }}
+
+<!-- 13.4 Keywords after a dot
+     Expect: every word after the dot is a property, not a keyword -->
+{{ item.set }} {{ post.include }} {{ user.filter }} {{ obj.context }} {{ a.true }} {{ a.if }}
+
+<!-- 13.5 elseif and is
+     Expect: elseif is a conditional keyword; is is a logical operator -->
+{% if a %}x{% elseif b %}y{% endif %}
+{% if value is defined %}x{% endif %}
+
+<!-- 13.6 Whitespace control after a block filter
+     Expect: the dash in the closing tag is punctuation.statement.end.njk, not an operator -->
+{% filter upper -%}text{% endfilter %}
+{%- filter upper -%}text{%- endfilter -%}
+
+
+<!-- ================== 14. KNOWN ISSUES (not fixed yet) ================== -->
+
+<!-- 14.1 Keyword used as a variable name
+     Expect: plain variables. Now: highlighted as keywords -->
+{{ from }} {{ filter }} {{ context }}
+
+<!-- 14.2 Filter inside call arguments
+     Expect: upper is a filter. Now: a variable -->
+{{ foo(x | upper) }}
+
+<!-- 14.3 Filter inside an object literal
+     Expect: upper is a filter. Now: a variable -->
+{{ {a: x | upper} }}
+
+<!-- 14.4 Macro parameter defaults
+     Expect: 1 is a number and true is a constant. Now: parameter colour -->
+{% macro m(a, b=1, c=true) %}x{% endmacro %}
+
+<!-- 14.5 Tag inside an HTML tag, outside attribute values
+     Expect: statement highlighted -->
+<input type="checkbox" {% if checked %}checked{% endif %}>
+
+<!-- 14.6 Tags inside a string in script
+     Expect: nothing nested, same as 13.1 -->
+<script>var s = "{{ '{{' }}";</script>
+
+<!-- 14.7 Event attributes (JavaScript)
+     Expect: the expression is a Nunjucks expression inside the JS.
+     Now: parsed as plain JS, no Nunjucks scopes. An override for the event attribute value
+     was tried and removed: it marked the closing parenthesis as an error -->
+<button onclick="go({{ id }})">x</button>
+<button onclick="alert('{{ msg }}')">x</button>
+<button onclick='go({{ id }}, "a")'>x</button>
+
+<!-- 14.8 JSON script with an expression in a value position
+     Expect: the expression is Nunjucks, JSON keys and strings keep JSON colours -->
+<script type="application/ld+json">
+  {"name": "{{ name }}", "items": {{ items | dump | safe }}}
+</script>
