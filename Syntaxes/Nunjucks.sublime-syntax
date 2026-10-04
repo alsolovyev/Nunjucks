@@ -98,6 +98,7 @@ contexts:
       scope: punctuation.definition.comment.begin.njk
       pop: true
       push:
+        - meta_include_prototype: false
         - meta_scope: comment.block.njk
         - match: '-?#}'
           scope: punctuation.definition.comment.end.njk
@@ -208,6 +209,7 @@ contexts:
     - match: \'
       scope: punctuation.definition.string.begin.njk
       push:
+        - meta_include_prototype: false
         - meta_scope: string.quoted.single.njk
         - match: \'
           scope: punctuation.definition.string.end.njk
@@ -215,6 +217,7 @@ contexts:
     - match: \"
       scope: punctuation.definition.string.begin.njk
       push:
+        - meta_include_prototype: false
         - meta_scope: string.quoted.double.njk
         - match: \"
           scope: punctuation.definition.string.end.njk
