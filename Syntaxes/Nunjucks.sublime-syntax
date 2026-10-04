@@ -16,13 +16,13 @@ variables:
   operators_arithmetic: '\+\+|\+|-|\*\*|\*|\/|%'
   operators_assignment: '\?\?=|\|\|=|\|=|\&\&=|\&=|\^=|>>>=|>>=|<<=|\*\*=|\*=|%=|\/=|-=|\+=|='
   operators_comparison: '<=|<|===|!==|!=|==|>=|>'
-  operators_logical: '&&|\|\||!|\bnot\b|\bor\b|\band\b'
+  operators_logical: '&&|\|\||!|\bnot\b|\bor\b|\band\b|(?<!\.)\bis\b'
   operators_bitwise: '>>>|>>|<<|~|\^|\|&'
   operators_ternary: '\?|:'
 
   keywords_boolean: true|false
   keywords_other: null|undefined
-  keywords_conditional: if|elif|else|endif
+  keywords_conditional: if|elif|elseif|else|endif
   keywords_template: extends|import|include|from|as|block|endblock
   keywords_reserved: |-
     (?x:
@@ -31,7 +31,7 @@ variables:
       macro|endmacro|
       set|endset|
       raw|endraw|
-      verbatim|
+      verbatim|endverbatim|
       filter|endfilter|
       call|endcall|
       with|context
@@ -50,6 +50,7 @@ contexts:
 
   # Nunjucks Includes
   nunjucks:
+    - include: nunjucks-raw
     - include: nunjucks-statement
     - include: nunjucks-expression
     - include: nunjucks-comment
@@ -58,7 +59,6 @@ contexts:
   nunjucks-statement:
     - match: '\{%-?'
       scope: punctuation.statement.begin.njk
-      pop: true
       push:
         - meta_scope: meta.statement.njk
         - match: '-?%\}'
@@ -77,7 +77,6 @@ contexts:
   nunjucks-expression:
     - match: '\{\{-?'
       scope: punctuation.expression.begin.njk
-      pop: true
       push:
         - meta_scope: meta.expression.njk
         - match: '-?\}\}'
@@ -96,12 +95,143 @@ contexts:
   nunjucks-comment:
     - match: '{#-?'
       scope: punctuation.definition.comment.begin.njk
-      pop: true
       push:
+        - meta_include_prototype: false
         - meta_scope: comment.block.njk
         - match: '-?#}'
           scope: punctuation.definition.comment.end.njk
           pop: true
+
+  ## Embedded HTML contexts
+  tag-attribute-value-content:
+    - meta_prepend: true
+    - include: nunjucks
+
+  script-javascript-content:
+    - meta_include_prototype: false
+    - match: \s*((<!\[)(CDATA)(\[))
+      captures:
+        1: meta.tag.sgml.cdata.html
+        2: punctuation.definition.tag.begin.html
+        3: keyword.declaration.cdata.html
+        4: punctuation.definition.tag.begin.html
+      pop: 1
+      embed: njk-js
+      embed_scope: meta.tag.sgml.cdata.html source.js.embedded.html
+      escape: \]\]>
+      escape_captures:
+        0: meta.tag.sgml.cdata.html punctuation.definition.tag.end.html
+    - match: '{{script_content_begin}}'
+      captures:
+        1: comment.block.html punctuation.definition.comment.begin.html
+      pop: 1
+      embed: njk-js
+      embed_scope: source.js.embedded.html
+      escape: '{{script_content_end}}'
+      escape_captures:
+        1: source.js.embedded.html
+        2: comment.block.html punctuation.definition.comment.end.html
+        3: source.js.embedded.html
+        4: comment.block.html punctuation.definition.comment.end.html
+
+  script-json-content:
+    - meta_include_prototype: false
+    - match: \s*((<!\[)(CDATA)(\[))
+      captures:
+        1: meta.tag.sgml.cdata.html
+        2: punctuation.definition.tag.begin.html
+        3: keyword.declaration.cdata.html
+        4: punctuation.definition.tag.begin.html
+      pop: 1
+      embed: njk-json
+      embed_scope: meta.tag.sgml.cdata.html source.json.embedded.html
+      escape: \]\]>
+      escape_captures:
+        0: meta.tag.sgml.cdata.html punctuation.definition.tag.end.html
+    - match: '{{script_content_begin}}'
+      captures:
+        1: comment.block.html punctuation.definition.comment.begin.html
+      pop: 1
+      embed: njk-json
+      embed_scope: source.json.embedded.html
+      escape: '{{script_content_end}}'
+      escape_captures:
+        1: source.json.embedded.html
+        2: comment.block.html punctuation.definition.comment.end.html
+        3: source.json.embedded.html
+        4: comment.block.html punctuation.definition.comment.end.html
+
+  style-css-content:
+    - meta_include_prototype: false
+    - match: \s*((<!\[)(CDATA)(\[))
+      captures:
+        1: meta.tag.sgml.cdata.html
+        2: punctuation.definition.tag.begin.html
+        3: keyword.declaration.cdata.html
+        4: punctuation.definition.tag.begin.html
+      pop: 1
+      embed: njk-css
+      embed_scope: meta.tag.sgml.cdata.html source.css.embedded.html
+      escape: \]\]>
+      escape_captures:
+        0: meta.tag.sgml.cdata.html punctuation.definition.tag.end.html
+    - match: '{{style_content_begin}}'
+      captures:
+        1: comment.block.html punctuation.definition.comment.begin.html
+      pop: 1
+      embed: njk-css
+      embed_scope: source.css.embedded.html
+      escape: '{{style_content_end}}'
+      escape_captures:
+        1: source.css.embedded.html
+        2: comment.block.html punctuation.definition.comment.end.html
+        3: source.css.embedded.html
+        4: comment.block.html punctuation.definition.comment.end.html
+
+  tag-style-attribute-value:
+    - match: \"
+      scope: meta.string.html string.quoted.double.html punctuation.definition.string.begin.html
+      embed: njk-css-rule-list
+      embed_scope: meta.string.html source.css.embedded.html
+      escape: \"
+      escape_captures:
+        0: meta.string.html string.quoted.double.html punctuation.definition.string.end.html
+    - match: \'
+      scope: meta.string.html string.quoted.single.html punctuation.definition.string.begin.html
+      embed: njk-css-rule-list
+      embed_scope: meta.string.html source.css.embedded.html
+      escape: \'
+      escape_captures:
+        0: meta.string.html string.quoted.single.html punctuation.definition.string.end.html
+    - include: else-pop
+
+  njk-css-rule-list:
+    - meta_include_prototype: false
+    - match: ''
+      push: scope:source.css#rule-list-body
+      with_prototype:
+        - include: nunjucks
+
+  njk-js:
+    - meta_include_prototype: false
+    - match: ''
+      push: scope:source.js
+      with_prototype:
+        - include: nunjucks
+
+  njk-json:
+    - meta_include_prototype: false
+    - match: ''
+      push: scope:source.json
+      with_prototype:
+        - include: nunjucks
+
+  njk-css:
+    - meta_include_prototype: false
+    - match: ''
+      push: scope:source.css
+      with_prototype:
+        - include: nunjucks
 
   ## Punctuation
   nunjucks-punctuation:
@@ -208,14 +338,20 @@ contexts:
     - match: \'
       scope: punctuation.definition.string.begin.njk
       push:
+        - meta_include_prototype: false
         - meta_scope: string.quoted.single.njk
+        - match: \\.
+          scope: constant.character.escape.njk
         - match: \'
           scope: punctuation.definition.string.end.njk
           pop: true
     - match: \"
       scope: punctuation.definition.string.begin.njk
       push:
+        - meta_include_prototype: false
         - meta_scope: string.quoted.double.njk
+        - match: \\.
+          scope: constant.character.escape.njk
         - match: \"
           scope: punctuation.definition.string.end.njk
           pop: true
@@ -242,23 +378,23 @@ contexts:
     - include: nunjucks-keywords-other
 
   nunjucks-keywords-conditional:
-    - match: '\b({{keywords_conditional}})\b'
+    - match: '(?<!\.)\b({{keywords_conditional}})\b'
       scope: keyword.control.conditional.njk
 
   nunjucks-keywords-template:
-    - match: '\b({{keywords_template}})\b'
+    - match: '(?<!\.)\b({{keywords_template}})\b'
       scope: keyword.control.import.njk
 
   nunjucks-keywords-reserved:
-    - match: '\b({{keywords_reserved}})\b'
+    - match: '(?<!\.)\b({{keywords_reserved}})\b'
       scope: keyword.control.njk
 
   nunjucks-keywords-boolean:
-    - match: '\b({{keywords_boolean}})\b'
+    - match: '(?<!\.)\b({{keywords_boolean}})\b'
       scope: constant.language.njk
 
   nunjucks-keywords-other:
-    - match: '\b({{keywords_other}})\b'
+    - match: '(?<!\.)\b({{keywords_other}})\b'
       scope: constant.language.njk
 
   ## Filter
@@ -289,7 +425,7 @@ contexts:
     - match: (?<=filter)(\s+)({{names}})(\()?
       scope: support.class.njk
       push:
-        - match: '(\))?(\s+)?(?=%\})'
+        - match: '(\))?(\s+)?(?=-?%\})'
           scope: support.class.njk
           pop: true
         - include: nunjucks-punctuation
@@ -351,10 +487,31 @@ contexts:
         - include: nunjucks-keywords-boolean
         - include: nunjucks-keywords-other
         - include: nunjucks-variables
-    #  Object properties
+    # Object properties
     - match: '(?<=[\]\w\.])({{names}})'
       # scope: variable.other.member.njk
       scope: variable.function.njk
     # Variables
     - match: '{{names}}'
       scope: variable.other.readwrite.njk
+
+  ## Raw
+  nunjucks-raw:
+    - match: '(\{%-?)\s*(raw)\s*(-?%\})'
+      scope: meta.statement.njk
+      captures:
+        1: punctuation.statement.begin.njk
+        2: keyword.control.njk
+        3: punctuation.statement.end.njk
+      embed: scope:text.html.basic
+      embed_scope: meta.raw.njk
+      escape: '(?=\{%-?\s*endraw\s*-?%\})'
+    - match: '(\{%-?)\s*(verbatim)\s*(-?%\})'
+      scope: meta.statement.njk
+      captures:
+        1: punctuation.statement.begin.njk
+        2: keyword.control.njk
+        3: punctuation.statement.end.njk
+      embed: scope:text.html.basic
+      embed_scope: meta.raw.njk
+      escape: '(?=\{%-?\s*endverbatim\s*-?%\})'

@@ -2,10 +2,7 @@
 
 A Sublime Text package for [Nunjucks](https://mozilla.github.io/nunjucks) templating engine.
 
-[![LICENSE](https://img.shields.io/badge/LICENSE-MIT-blue?style=for-the-badge)](https://github.com/alsolovyev/Nunjucks/blob/master/LICENSE)
-[![LICENSE](https://img.shields.io/badge/ST-Build%203092+-orange?style=for-the-badge&logo=sublime-text)](https://www.sublimetext.com)
-[![Tag](https://img.shields.io/github/v/tag/alsolovyev/Nunjucks?style=for-the-badge&logo=github&sort=semver)](https://github.com/alsolovyev/Nunjucks/releases)
-[![Downloads](https://img.shields.io/packagecontrol/dt/Nunjucks?style=for-the-badge)](https://packagecontrol.io/packages/Nunjucks)
+[![LICENSE](https://img.shields.io/badge/LICENSE-MIT-blue?style=for-the-badge)](https://github.com/alsolovyev/Nunjucks/blob/master/LICENSE) [![LICENSE](https://img.shields.io/badge/ST-Build%203092+-orange?style=for-the-badge&logo=sublime-text)](https://www.sublimetext.com) [![Tag](https://img.shields.io/github/v/tag/alsolovyev/Nunjucks?style=for-the-badge&logo=github&sort=semver)](https://github.com/alsolovyev/Nunjucks/releases) [![Downloads](https://img.shields.io/packagecontrol/dt/Nunjucks?style=for-the-badge)](https://packagecontrol.io/packages/Nunjucks)
 
 [![Nunjucks](http://habrastorage.org/webt/n6/v8/-h/n6v8-hsag0t0dynxp1ab0uw7jhe.jpeg)](https://github.com/alsolovyev/Nunjucks)
 
@@ -34,23 +31,23 @@ A Sublime Text package for [Nunjucks](https://mozilla.github.io/nunjucks) templa
 - select `Package Control: Install Packages`
 - search for `Nunjucks`
 
-_* to update the package `Package Control: Upgrade Package` select `Nunjucks`_
+** to update the package `Package Control: Upgrade Package` select `Nunjucks`*
 
 **Manually download sublime-package file:**
 
-- download sublime-package file: [Nunjucks.sublime-package](https://github.com/alsolovyev/Nunjucks/releases/download/v2.0.2/Nunjucks.sublime-package)
+- download sublime-package file: [Nunjucks.sublime-package](https://github.com/alsolovyev/Nunjucks/releases/download/v2.2.2/Nunjucks.sublime-package)
 - move it into your Sublime Text **Installed Packages** directory
-  - Windows: `%APPDATA%\Sublime Text 3\Installed Packages`
-  - OS X: `~/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages`
-  - Linux: `~/.config/sublime-text-3/Installed Packages`
+  * Windows: `%APPDATA%\Sublime Text 3\Installed Packages`
+  * OS X: `~/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages`
+  * Linux: `~/.config/sublime-text-3/Installed Packages`
 
 **Manually download repository:**
 
 - clone [repository](https://github.com/alsolovyev/Nunjucks/archive/master.zip)
 - extract it into your Sublime Text **Packages** directory
-  - Windows: `%APPDATA%\Sublime Text 3\Packages`
-  - OS X: `~/Library/Application\ Support/Sublime\ Text\ 3/Packages`
-  - Linux: `~/.config/sublime-text-3/Packages`
+  * Windows: `%APPDATA%\Sublime Text 3\Packages`
+  * OS X: `~/Library/Application\ Support/Sublime\ Text\ 3/Packages`
+  * Linux: `~/.config/sublime-text-3/Packages`
 
 ## Documentation
 
@@ -117,9 +114,9 @@ You can [create](https://mozilla.github.io/nunjucks/api#custom-filters) your own
 - [`%`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/tag.sublime-snippet) - Braces for code
 - [`bl`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/block.sublime-snippet) - Define a section in a template
 - [`cb`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/comment_block.sublime-snippet) - BEGIN-END comment block
-- [`cl`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/call.sublime-snippet) -  Call a macro with all the text inside the tag
+- [`cl`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/call.sublime-snippet) - Call a macro with all the text inside the tag
 - [`co`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/comment.sublime-snippet) - Braces for comments
-- [`ext`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/extends.sublime-snippet) -  "Extends" another template
+- [`ext`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/extends.sublime-snippet) - "Extends" another template
 - [`fl`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/filter.sublime-snippet) - Custom filters template
 - [`for`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/for.sublime-snippet) - For loop
 - [`fr`](https://github.com/alsolovyev/Nunjucks/blob/master/Snippets/import_from.sublime-snippet) - Import specific values from a template
