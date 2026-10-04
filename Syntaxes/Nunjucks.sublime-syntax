@@ -190,6 +190,30 @@ contexts:
         3: source.css.embedded.html
         4: comment.block.html punctuation.definition.comment.end.html
 
+  tag-style-attribute-value:
+    - match: \"
+      scope: meta.string.html string.quoted.double.html punctuation.definition.string.begin.html
+      embed: njk-css-rule-list
+      embed_scope: meta.string.html source.css.embedded.html
+      escape: \"
+      escape_captures:
+        0: meta.string.html string.quoted.double.html punctuation.definition.string.end.html
+    - match: \'
+      scope: meta.string.html string.quoted.single.html punctuation.definition.string.begin.html
+      embed: njk-css-rule-list
+      embed_scope: meta.string.html source.css.embedded.html
+      escape: \'
+      escape_captures:
+        0: meta.string.html string.quoted.single.html punctuation.definition.string.end.html
+    - include: else-pop
+
+  njk-css-rule-list:
+    - meta_include_prototype: false
+    - match: ''
+      push: scope:source.css#rule-list-body
+      with_prototype:
+        - include: nunjucks
+
   njk-js:
     - meta_include_prototype: false
     - match: ''
