@@ -291,6 +291,15 @@
 <div style="width: {{ w }}px; {% if hidden %}display: none;{% endif %}">x</div>
 <div style='margin: {{ m }}'>x</div>
 
+<!-- 11.9 Variable as a tag name
+     Expect: a normal HTML tag; the expression in the name is Nunjucks;
+     attributes, quotes and text keep HTML colours; the closing tag too -->
+{% macro heading(tag) %}
+  <{{ tag }} class='heading'>heading</{{ tag }}>
+{% endmacro %}
+<{{ tag }}>text</{{ tag }}>
+<{{ tag | default("div") }} id="x">text</{{ tag }}>
+
 <!-- ============================ 12. SCRIPT AND STYLE ============================ -->
 
 <!-- 12.1 Expressions in script
