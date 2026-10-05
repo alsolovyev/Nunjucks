@@ -1,0 +1,12 @@
+The Nunjucks package has been successfully updated to version 2.2.3
+
+Fixes:
+ - highlight HTML tags with a variable as the name, e.g. `<{{ tag }} class="a">`
+   and `</{{ tag }}>`
+
+Refactor:
+ - overrode the `tag_name_start` variable, so `{{` is a valid start of an HTML tag
+   name and the attributes and the closing tag keep their HTML highlighting
+
+Please report issues here: https://github.com/alsolovyev/Nunjucks/issues
+Created by janeRivas <solovyev.a@icloud.com>
