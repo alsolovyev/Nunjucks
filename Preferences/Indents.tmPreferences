@@ -9,35 +9,45 @@
   <dict>
     <key>increaseIndentPattern</key>
     <string><![CDATA[(?x)
-        (
-          ^.*\{[^}"']*$
-        )
-        |
-        (
-          ^\s*+
-            {%-?
-            \s*+
-            \b(if|elif|else|for|asyncEach|asyncAll|macro|block|raw|verbatim|filter|call)\b
-            .*
-            -?%}
-          \s*$
-        )
+(?:
+  ^.* (
+      <(?!
+          !--
+        | [?%]
+        | (?i:!doctype)
+        | (?i:area|base|br|col|frame|hr|html|img|input|link|meta|param)[\t\n\f /<>]
+      )(?:
+        (?<html_tag>[^\t\n\f /<>]+)
+        (?:(?!/>)[^>])* >
+        (?! .* </\k<html_tag>)
+      )
+    | <\?(?!.*?\?>)
+    | <\%(?!.*?\%>)
+    | \{(?=\s*(?:<!--.*)?$)
+  )
+)
+|
+(?:
+  ^\s*+ \{%-? \s*+
+  (?:
+      \b(?:if|elif|elseif|else|for|asyncEach|asyncAll|macro|block|raw|verbatim|filter|call)\b (?:(?!%\}).)* -?%\}
+    | \bset\b (?:(?!=|%\}).)* -?%\}
+  )
+  \s*$
+)
     ]]></string>
     <key>decreaseIndentPattern</key>
     <string><![CDATA[(?x)
-        (
-          ^(.*\*/)?\s*\}.*$
-        )
-        |
-        (
-          ^\s*+
-          {%-?
-          \s*+
-          \b(endif|endfor|endeach|endall|endmacro|endblock|endraw|endverbatim|endfilter|endcall)\b
-          .*
-          -?%}
-          \s*$
-        )
+    ^[^<>]*+ </ (?!html[\t\n\f /<>])[^\t\n\f /<>]+ [^>]* >
+  | ^[\t\n\f ]*+
+    (
+        --> [\t\n\f ]* </ (?: script | style )[\t\n\f /<>]
+      | [?%]>
+      | \}
+    )
+  | ^\s*+ \{%-? \s*+
+    \b(?:elif|elseif|else|endif|endfor|endeach|endall|endmacro|endblock|endraw|endverbatim|endfilter|endcall|endset)\b
+    (?:(?!%\}).)* -?%\} \s*$
     ]]></string>
   </dict>
 </dict>
