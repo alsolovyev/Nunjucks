@@ -1,0 +1,15 @@
+The Nunjucks package has been successfully updated to version 2.2.4
+
+Fixes:
+ - fixed the error "no such target scope:source.css.js-template#rule-list-body"
+   that prevented the syntax from loading
+
+Refactor:
+ - removed the `njk-js`, `njk-css`, `njk-json` and `njk-css-rule-list` contexts
+
+Known limitations:
+ - template tags inside `<script>`, `<style>`, JSON scripts and `style`
+   attributes are not highlighted
+
+Please report issues here: https://github.com/alsolovyev/Nunjucks/issues
+Created by janeRivas <solovyev.a@icloud.com>
