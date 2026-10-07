@@ -1,0 +1,18 @@
+%YAML 1.2
+---
+name: JavaScript (Nunjucks)
+scope: source.js.njk
+version: 2
+hidden: true
+
+extends: Packages/JavaScript/JavaScript.sublime-syntax
+
+contexts:
+
+  prototype:
+    - meta_prepend: true
+    - include: Nunjucks.sublime-syntax#nunjucks
+
+  string-content:
+    - meta_prepend: true
+    - include: Nunjucks.sublime-syntax#nunjucks

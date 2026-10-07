@@ -1,0 +1,18 @@
+%YAML 1.2
+---
+name: JSON (Nunjucks)
+scope: source.json.njk
+version: 2
+hidden: true
+
+extends: Packages/JSON/JSON.sublime-syntax
+
+contexts:
+
+  prototype:
+    - meta_prepend: true
+    - include: Nunjucks.sublime-syntax#nunjucks
+
+  string-prototype:
+    - meta_prepend: true
+    - include: Nunjucks.sublime-syntax#nunjucks
