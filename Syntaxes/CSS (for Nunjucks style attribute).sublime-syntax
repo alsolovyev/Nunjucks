@@ -1,0 +1,11 @@
+%YAML 1.2
+---
+scope: source.css.style-attribute.njk
+version: 2
+hidden: true
+
+extends: CSS (Nunjucks).sublime-syntax
+
+contexts:
+  main:
+    - include: rule-list-body
