@@ -13,7 +13,8 @@ Refactor:
    be enabled for this
 
 Known limitations:
- - template tags inside event attributes such as `onclick` are not highlighted
+ - highlighting inside <style>, style="", <script> and JSON needs the built-in
+ CSS, JavaScript and JSON packages enabled
 
 Please report issues here: https://github.com/alsolovyev/Nunjucks/issues
 Created by janeRivas <solovyev.a@icloud.com>
