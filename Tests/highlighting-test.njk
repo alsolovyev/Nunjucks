@@ -333,6 +333,9 @@
      Expect: the expression is a Nunjucks expression (no invalid.illegal); script tags are normal -->
 <script type="application/json">{{ data | dump | safe }}</script>
 
+<!-- 12.7 Statement betweeng declarations in a style block
+     Expect: if and endif are a statement; color: red stays CSS -->
+<style>.a { {% if on %}color: red;{% endif %} }</style>
 
 <!-- ======================== 13. REGRESSION (latest fixes) ======================== -->
 
