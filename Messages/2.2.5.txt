@@ -1,0 +1,19 @@
+The Nunjucks package has been successfully updated to version 2.2.5
+
+Fixes:
+ - fixed the error "no such target scope:source.css.js-template#rule-list-body"
+   that prevented the syntax from loading
+
+Refactor:
+ - replaced the `with_prototype` based embedding of JavaScript, CSS and JSON
+   with hidden syntaxes: `JavaScript (Nunjucks)`, `CSS (Nunjucks)`,
+   `CSS (for Nunjucks style attribute)` and `JSON (Nunjucks)`
+ - template tags are highlighted inside `<script>`, `<style>`, JSON scripts
+   and `style` attributes; the built-in CSS, JavaScript and JSON packages must
+   be enabled for this
+
+Known limitations:
+ - template tags inside event attributes such as `onclick` are not highlighted
+
+Please report issues here: https://github.com/alsolovyev/Nunjucks/issues
+Created by janeRivas <solovyev.a@icloud.com>
